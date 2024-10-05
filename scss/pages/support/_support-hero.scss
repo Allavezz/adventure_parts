@@ -1,0 +1,33 @@
+.support-hero {
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	font-size: 2rem;
+	color: var(--white);
+	width: 100%;
+	height: 46dvh;
+	display: flex;
+	justify-content: center;
+	align-items: end;
+
+	&__title {
+		position: relative;
+		z-index: 10;
+
+		h2 {
+			position: relative;
+			z-index: 10;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: var(--brand);
+			opacity: 0.5;
+		}
+	}
+}

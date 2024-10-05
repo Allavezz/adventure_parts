@@ -1,0 +1,47 @@
+@use '../abstrats' as *;
+
+.btn {
+	position: relative;
+	background-color: var(--brand);
+	color: var(--white);
+	border-radius: 4px;
+	font-weight: 600;
+	padding: 0.75rem 1.75rem;
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #ff402a;
+	}
+}
+
+.btn-blue {
+	color: var(--white);
+	background-color: var(--admin);
+
+	&:hover {
+		color: var(--admin);
+		background-color: transparent;
+	}
+}
+
+.btn-sec {
+	position: relative;
+	background-color: var(--white);
+	color: var(--title1);
+	border-radius: 4px;
+	font-weight: 600;
+	padding: 0.75rem 1.75rem;
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--brand);
+		color: var(--white);
+	}
+}
+
+.active {
+	background-color: var(--brand);
+	color: var(--white);
+}

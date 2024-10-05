@@ -1,0 +1,65 @@
+@use '../../abstrats' as *;
+
+.product-cta {
+	background-color: var(--white);
+
+	&__container {
+		background-color: var(--bg-w);
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		gap: 2.5rem;
+		border-radius: 4px;
+	}
+
+	&__action {
+		h2 {
+			margin-bottom: 1rem;
+		}
+
+		span {
+			color: var(--brand);
+		}
+	}
+
+	&__description {
+		color: var(--title1);
+
+		h3 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		ol li {
+			list-style: unset;
+			margin-left: 1rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	&__icons {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	&__icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+
+		i {
+			font-size: 4rem;
+			color: var(--brand);
+		}
+
+		span {
+			color: var(--brand);
+			font-size: 1.5rem;
+			font-family: 'Oswald', sans-serif;
+			font-weight: 500;
+		}
+	}
+}

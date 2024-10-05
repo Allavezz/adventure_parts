@@ -1,0 +1,26 @@
+@use './mixins' as *;
+@use './variables' as *;
+
+// Section Padding
+
+.sc-padding {
+	padding: 3rem 1rem 0;
+
+	@include respond(sm) {
+		padding: 4rem 2rem 0;
+	}
+	@include respond(md) {
+		padding: 5rem 3rem 0;
+	}
+}
+
+.sc-padding-b {
+	padding: 3rem 1rem 2.5rem;
+
+	@include respond(sm) {
+		padding: 4rem 2rem 3.5rem;
+	}
+	@include respond(md) {
+		padding: 5rem 3rem 4.5rem;
+	}
+}

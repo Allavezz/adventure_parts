@@ -1,0 +1,68 @@
+@use '../../abstrats' as *;
+
+.cart {
+	background-color: var(--bg-w);
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		font-family: 'Oswald', sans-serif;
+	}
+
+	table {
+		background-color: var(--white);
+		width: clamp(300px, 100%, 900px);
+		margin: 0 auto;
+		border: 1px solid black;
+	}
+
+	&__tr-head {
+		th {
+			padding: 0.5rem;
+			color: #6d6d6d;
+			text-align: left;
+			font-size: 1.25rem;
+			font-weight: 400;
+			border-bottom: 1px solid #c1beb9;
+		}
+	}
+
+	&__tr-item {
+		td {
+			color: #333;
+			padding: 0.5rem;
+			font-size: 1.25rem;
+			border-bottom: 1px solid #c1beb9;
+		}
+
+		td:nth-child(4) {
+			font-weight: 600;
+		}
+
+		td:nth-child(5) {
+			color: var(--brand);
+		}
+	}
+
+	&__tr-buttons {
+		td {
+			text-align: right;
+			padding: 0.5rem;
+
+			span {
+				padding: 0.5rem;
+
+				input {
+					padding: 0.25rem 0.5rem;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+
+	&__checkout {
+		margin: 2rem auto 0;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+	}
+}

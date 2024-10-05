@@ -1,0 +1,46 @@
+@use '../abstrats' as *;
+
+.footer {
+	background-color: var(--footer);
+	padding: 1rem 1rem 0.5rem;
+
+	@include respond(sm) {
+		padding: 2rem 2rem 1rem;
+	}
+	@include respond(md) {
+		padding: 3rem 3rem 2rem;
+	}
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--nav);
+	}
+
+	&__item {
+		color: var(--white);
+		padding-bottom: 2rem;
+
+		h3 {
+			border-left: 3px solid var(--brand);
+
+			font-size: 1.5rem;
+			text-transform: uppercase;
+			padding-left: 0.5rem;
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__credits {
+		text-align: center;
+		padding-top: 2rem;
+		color: var(--text);
+	}
+}
