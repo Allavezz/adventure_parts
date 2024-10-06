@@ -23,7 +23,7 @@
                     $modelSlug = htmlspecialchars($model["model_slug"], ENT_QUOTES, 'UTF-8');
 
                     echo '
-                        <a href="parts.html?filter=ktm990">
+                        <a href="' . ROOT . '/models/' . $modelSlug . '">
 						    <div class="models__item">
 							    <div class="models__image">
 							        <img src="./images/models/' . $modelImage . '" alt=" ' . $modelName . ' " />

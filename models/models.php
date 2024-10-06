@@ -20,4 +20,22 @@ class Models extends Base
 
         return $query->fetchAll();
     }
+
+    public function getBySlug($id)
+    {
+        $query = $this->db->prepare(" 
+            SELECT 
+                * 
+            FROM 
+                models 
+            WHERE 
+                model_slug= ?
+        ");
+
+        $query->execute([
+            $id
+        ]);
+
+        return $query->fetch();
+    }
 }
