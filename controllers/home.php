@@ -1,10 +1,14 @@
 <?php
 
 require("models/models.php");
+require("models/about.php");
 
-$model = new Models();
+$modelModels = new Models();
+$modelAbout = new About();
 
-$models = $model->getAll();
+
+$models = $modelModels->getAll();
+$about = $modelAbout->get();
 
 
 require("views/home.php");
