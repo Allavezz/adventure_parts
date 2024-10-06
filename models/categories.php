@@ -12,8 +12,6 @@ class Categories extends Base
                 category_id, category_name, category_slug, category_image, sort_order 
             FROM 
                 categories 
-            ORDER BY 
-                sort_order ASC
         ");
 
         $query->execute();

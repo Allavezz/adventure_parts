@@ -225,7 +225,7 @@ figcaption {
   color: var(--white);
 }
 
-.active {
+.btn-active {
   background-color: var(--brand);
   color: var(--white);
 }
@@ -369,17 +369,6 @@ figcaption {
   flex-direction: column;
   gap: 2rem;
 }
-.products__filter div {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.products__filter button {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-family: "Oswald", sans-serif;
-  border: none;
-}
 .products__gallery {
   max-width: 1200px;
   margin: 0 auto;
@@ -450,6 +439,28 @@ figcaption {
 .products__pagination button :hover {
   background-color: #555;
   color: #fff;
+}
+
+.category {
+  background-color: var(--bg-w);
+}
+.category__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.category__nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.category__nav a {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "Oswald", sans-serif;
+  border: none;
 }
 
 .support-hero {

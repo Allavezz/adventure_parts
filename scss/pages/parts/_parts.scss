@@ -11,21 +11,6 @@
 		gap: 2rem;
 	}
 
-	&__filter {
-		div {
-			display: flex;
-			gap: 1rem;
-			flex-wrap: wrap;
-		}
-
-		button {
-			text-transform: uppercase;
-			font-size: 14px;
-			font-family: 'Oswald', sans-serif;
-			border: none;
-		}
-	}
-
 	&__gallery {
 		max-width: 1200px;
 		margin: 0 auto;

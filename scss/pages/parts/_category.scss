@@ -1,0 +1,26 @@
+@use '../../abstrats' as *;
+
+.category {
+	background-color: var(--bg-w);
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	&__nav {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+
+		a {
+			text-transform: uppercase;
+			font-size: 14px;
+			font-family: 'Oswald', sans-serif;
+			border: none;
+		}
+	}
+}

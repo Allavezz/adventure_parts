@@ -9,6 +9,7 @@ require("models/categories.php");
 
 $modelCategories = new Categories();
 
+$categories = $modelCategories->getAll();
 $category = $modelCategories->getBySlug($id);
 
 if (empty($category)) {
