@@ -11,7 +11,7 @@ class Models extends Base
             SELECT 
                 model_id, model_name, model_slug, model_image, sort_order 
             FROM 
-                model 
+                models 
             ORDER BY 
                 sort_order ASC
         ");
