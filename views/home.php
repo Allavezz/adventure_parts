@@ -59,7 +59,7 @@
                     <h2 class="title"><?= $aboutTitle ?></h2>
                     <?php
                     foreach ($aboutParagraphs as $paragraph) {
-                        echo "<p>" . htmlspecialchars(trim($paragraph), ENT_QUOTES, 'UTF-8') . "</p>";
+                        echo "<p class='text'>" . htmlspecialchars(trim($paragraph), ENT_QUOTES, 'UTF-8') . "</p>";
                     }
                     ?>
                 </div>
