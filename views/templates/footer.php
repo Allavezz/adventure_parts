@@ -8,7 +8,7 @@
                         <a href="<?= ROOT ?>/">Home</a>
                     </li>
                     <li>
-                        <a href="<?= ROOT ?>/models/all">Parts</a>
+                        <a href="<?= ROOT ?>/categories/all">Parts</a>
                     </li>
                 </ul>
             </div>

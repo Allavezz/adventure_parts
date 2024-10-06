@@ -1,13 +1,13 @@
 <?php
 
-require("models/models.php");
+require("models/categories.php");
 require("models/about.php");
 
-$modelModels = new Models();
+$modelCategories = new Categories();
 $modelAbout = new About();
 
 
-$models = $modelModels->getAll();
+$categories = $modelCategories->getAll();
 $about = $modelAbout->get();
 
 

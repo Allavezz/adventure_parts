@@ -2,16 +2,16 @@
 
 require_once("base.php");
 
-class Models extends Base
+class Categories extends Base
 {
     public function getAll()
     {
 
         $query = $this->db->prepare(" 
             SELECT 
-                model_id, model_name, model_slug, model_image, sort_order 
+                category_id, category_name, category_slug, category_image, sort_order 
             FROM 
-                models 
+                categories 
             ORDER BY 
                 sort_order ASC
         ");
@@ -27,9 +27,9 @@ class Models extends Base
             SELECT 
                 * 
             FROM 
-                models 
+                categories 
             WHERE 
-                model_slug= ?
+                category_slug= ?
         ");
 
         $query->execute([

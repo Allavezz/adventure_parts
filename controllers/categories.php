@@ -5,15 +5,15 @@ if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
     die("Invalid Request");
 }
 
-require("models/models.php");
+require("models/categories.php");
 
-$modelModels = new Models();
+$modelCategories = new Categories();
 
-$model = $modelModels->getBySlug($id);
+$category = $modelCategories->getBySlug($id);
 
-if (empty($model)) {
+if (empty($category)) {
     http_response_code(404);
     die("Not Found");
 }
 
-require("views/models.php");
+require("views/categories.php");

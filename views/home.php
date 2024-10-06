@@ -13,24 +13,24 @@
 
     <main>
 
-        <!-- Models Gallery Section -->
-        <section class="models sc-padding">
-            <div class="models__container">
+        <!-- Categories Gallery Section -->
+        <section class="categories sc-padding">
+            <div class="categories__container">
                 <?php
-                foreach ($models as $model) {
-                    $modelImage = htmlspecialchars($model["model_image"], ENT_QUOTES, 'UTF-8');
-                    $modelName = htmlspecialchars($model["model_name"], ENT_QUOTES, 'UTF-8');
-                    $modelSlug = htmlspecialchars($model["model_slug"], ENT_QUOTES, 'UTF-8');
+                foreach ($categories as $category) {
+                    $categoryImage = htmlspecialchars($category["category_image"], ENT_QUOTES, 'UTF-8');
+                    $categoryName = htmlspecialchars($category["category_name"], ENT_QUOTES, 'UTF-8');
+                    $categorySlug = htmlspecialchars($category["category_slug"], ENT_QUOTES, 'UTF-8');
 
                     echo '
-                        <a href="' . ROOT . '/models/' . $modelSlug . '">
-						    <div class="models__item">
-							    <div class="models__image">
-							        <img src="./images/models/' . $modelImage . '" alt=" ' . $modelName . ' " />
+                        <a href="' . ROOT . '/categories/' . $categorySlug . '">
+						    <div class="categories__item">
+							    <div class="categories__image">
+							        <img src="./images/categories/' . $categoryImage . '" alt=" ' . $categoryName . ' " />
 							    </div>
-							    <div class="models__text">
-								    <h3 class="models__title">' . $modelName . '</h3>
-								    <h4 class="models__cta">Pick Your Bike</h4>
+							    <div class="categories__text">
+								    <h3 class="categories__title">' . $categoryName . '</h3>
+								    <h4 class="categories__cta">Pick Your Bike</h4>
 							    </div>
 						    </div>
 					    </a>
