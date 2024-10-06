@@ -4,7 +4,12 @@
             <div class="footer__item">
                 <h3>Shop</h3>
                 <ul>
-                    <li>Parts</li>
+                    <li>
+                        <a href="<?= ROOT ?>/">Home</a>
+                    </li>
+                    <li>
+                        <a href="<?= ROOT ?>/models/all">Parts</a>
+                    </li>
                 </ul>
             </div>
 
