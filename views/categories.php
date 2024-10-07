@@ -40,6 +40,13 @@
         <!-- Producs Section -->
         <section class="sc-padding-b">
             <h2><?= htmlspecialchars($category["category_name"], ENT_QUOTES, 'UTF-8') ?></h2>
+            <?php
+            foreach ($products as $product) {
+                echo '
+                    <p>' . $product["product_name"] . '</p>
+                ';
+            }
+            ?>
         </section>
     </main>
 

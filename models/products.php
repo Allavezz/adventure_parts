@@ -21,4 +21,26 @@ class Products extends Base
 
         return $query->fetchAll();
     }
+
+    public function getProductsByCategoryId($id)
+    {
+        $query = $this->db->prepare(" 
+            SELECT 
+                p.product_id, 
+                p.product_name, 
+                p.product_slug, 
+                p.product_image 
+            FROM products p 
+            JOIN 
+                product_categories pc ON p.product_id = pc.product_id 
+            JOIN 
+                categories c ON c.category_id = pc.category_id 
+            WHERE 
+                c.category_slug = ?
+        ");
+
+        $query->execute([$id]);
+
+        return $query->fetchAll();
+    }
 }

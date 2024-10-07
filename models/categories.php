@@ -18,7 +18,7 @@ class Categories extends Base
         return $query->fetchAll();
     }
 
-    public function getBySlug($id)
+    public function getById($id)
     {
         $query = $this->db->prepare(" 
             SELECT 

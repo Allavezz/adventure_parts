@@ -6,10 +6,14 @@ if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
 }
 
 require("models/categories.php");
+require("models/products.php");
 
 $modelCategories = new Categories();
 $categories = $modelCategories->getAll();
-$category = $modelCategories->getBySlug($id);
+$category = $modelCategories->getById($id);
+
+$modelProducts = new Products();
+$products = $modelProducts->getProductsByCategoryId($id);
 
 // Sort categories alphabetically by category_name
 usort($categories, function ($a, $b) {
