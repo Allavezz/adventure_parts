@@ -13,21 +13,18 @@
 
     <main>
 
+        <!-- Category Navigation -->
         <section class="category sc-padding-b">
             <div class="category__container">
                 <h2 class="title">Choose your bike</h2>
                 <div class="category__nav">
                     <?php
-                    // Alphabetic sort by category name
-                    usort($categories, function ($a, $b) {
-                        return strcmp($a["category_name"], $b["category_name"]);
-                    });
 
                     foreach ($categories as $categories) {
                         $categoriesName = htmlspecialchars($categories["category_name"], ENT_QUOTES, 'UTF-8');
                         $categoriesSlug = htmlspecialchars($categories["category_slug"], ENT_QUOTES, 'UTF-8');
 
-                        // Check if current slug matches page slug
+                        // Add active class if the category slug matches the current one
                         $btnActive = ($category["category_slug"] === $categoriesSlug) ? 'btn-active' : '';
 
                         echo '
@@ -38,9 +35,12 @@
                     ?>
                 </div>
             </div>
-
         </section>
 
+        <!-- Producs Section -->
+        <section>
+
+        </section>
     </main>
 
     <?php require("templates/footer.php"); ?>

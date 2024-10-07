@@ -8,9 +8,13 @@ if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
 require("models/categories.php");
 
 $modelCategories = new Categories();
-
 $categories = $modelCategories->getAll();
 $category = $modelCategories->getBySlug($id);
+
+// Sort categories alphabetically by category_name
+usort($categories, function ($a, $b) {
+    return strcmp($a["category_name"], $b["category_name"]);
+});
 
 if (empty($category)) {
     http_response_code(404);
