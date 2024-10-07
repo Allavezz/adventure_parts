@@ -6,7 +6,6 @@ class Categories extends Base
 {
     public function getAll()
     {
-
         $query = $this->db->prepare(" 
             SELECT 
                 category_id, category_name, category_slug, category_image, sort_order 
