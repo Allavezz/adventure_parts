@@ -6,12 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure Parts</title>
     <link rel="stylesheet" href="../css/main.css">
+    <script defer src="./js/heroSlider.js"></script>
 </head>
 
 <body>
     <?php require("templates/header.php"); ?>
 
     <main>
+        <!-- Hero Section -->
+        <hero class="hero">
+
+            <div class="hero__slides">
+                <?php
+                $isFirstSlide = true;
+                foreach ($products as $product) {
+                    $productName = htmlspecialchars($product["product_name"], ENT_QUOTES, 'UTF-8');
+                    $productSlug = htmlspecialchars($product["product_slug"], ENT_QUOTES, 'UTF-8');
+                    $productHero = htmlspecialchars($product["hero_image_url"], ENT_QUOTES, 'UTF-8');
+
+                    $activeClass = $isFirstSlide ? 'hero__slide--active' : '';
+
+                    echo '
+                        <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'../images/products/hero/' . $productHero . ' \')">
+                            <div class="hero__content">
+                                <h2 class="hero__title"> ' . $productName . ' </h2>
+                                <a href="' . $productSlug . '" class="hero__link btn">Learn More</a>
+                            </div>
+                        </div>
+                    ';
+
+                    $isFirstSlide = false;
+                }
+                ?>
+            </div>
+        </hero>
 
         <!-- Categories Gallery Section -->
         <section class="categories sc-padding">
@@ -51,7 +79,7 @@
         }
         ?>
         <section class="about sc-padding-b">
-            <div class="about_container">
+            <div class="about__container">
                 <div class="about__image">
                     <img src="../images/about/<?= $aboutImage ?>" alt="<?= $aboutAlt ?>">
                 </div>

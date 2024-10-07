@@ -38,8 +38,8 @@
         </section>
 
         <!-- Producs Section -->
-        <section>
-
+        <section class="sc-padding-b">
+            <h2><?= htmlspecialchars($category["category_name"], ENT_QUOTES, 'UTF-8') ?></h2>
         </section>
     </main>
 
