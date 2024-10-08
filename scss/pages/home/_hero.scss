@@ -23,12 +23,16 @@
 		background-size: cover;
 		background-position: center;
 		opacity: 0;
-		transition: opacity 1.5s ease-in-out;
+		visibility: hidden;
+		transition: opacity 1.5s ease-in-out, visibility 0s 1.5s;
 		display: flex;
 		align-items: center;
 
 		&--active {
+			z-index: 2;
 			opacity: 1;
+			visibility: visible;
+			transition: opacity 1.5s ease-in-out, visibility 0s 0s;
 		}
 
 		@include respond(sm) {
@@ -42,6 +46,7 @@
 	&__content {
 		width: 1200px;
 		margin: 0 auto;
+		z-index: 3;
 	}
 
 	&__title {
