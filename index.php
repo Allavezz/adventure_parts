@@ -13,7 +13,7 @@ if (empty($controller)) {
 }
 
 if (!empty($url_parts[2])) {
-    $id = $url_parts[2];
+    $slug = $url_parts[2];
 }
 
 if (!file_exists("controllers/" . $controller . ".php")) {

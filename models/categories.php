@@ -8,7 +8,11 @@ class Categories extends Base
     {
         $query = $this->db->prepare(" 
             SELECT 
-                category_id, category_name, category_slug, category_image, sort_order 
+                category_id, 
+                category_name, 
+                category_slug, 
+                category_image, 
+                sort_order 
             FROM 
                 categories 
         ");
@@ -18,20 +22,22 @@ class Categories extends Base
         return $query->fetchAll();
     }
 
-    public function getBySlug($id)
+    public function getBySlug($slug)
     {
         $query = $this->db->prepare(" 
             SELECT 
-                * 
+                category_id, 
+                category_name, 
+                category_slug, 
+                category_image, 
+                sort_order  
             FROM 
                 categories 
             WHERE 
                 category_slug= ?
         ");
 
-        $query->execute([
-            $id
-        ]);
+        $query->execute([$slug]);
 
         return $query->fetch();
     }

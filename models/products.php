@@ -22,7 +22,7 @@ class Products extends Base
         return $query->fetchAll();
     }
 
-    public function getProductsByCategorySlug($id)
+    public function getProductsByCategorySlug($slug)
     {
         $query = $this->db->prepare(" 
             SELECT 
@@ -39,7 +39,7 @@ class Products extends Base
                 c.category_slug = ?
         ");
 
-        $query->execute([$id]);
+        $query->execute([$slug]);
 
         return $query->fetchAll();
     }
