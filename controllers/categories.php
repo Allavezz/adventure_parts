@@ -1,6 +1,6 @@
 <?php
 
-if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
+if (empty($slug) || !preg_match('/^[a-z0-9-]+$/', $slug)) {
     http_response_code(400);
     die("Invalid Request");
 }
@@ -10,15 +10,16 @@ require("models/products.php");
 
 $modelCategories = new Categories();
 $categories = $modelCategories->getAll();
-$category = $modelCategories->getBySlug($id);
+$category = $modelCategories->getBySlug($slug);
 
 $modelProducts = new Products();
-$products = $modelProducts->getProductsByCategorySlug($id);
+$products = $modelProducts->getProductsByCategorySlug($slug);
 
 // Sort categories alphabetically by category_name
 usort($categories, function ($a, $b) {
     return strcmp($a["category_name"], $b["category_name"]);
 });
+
 
 if (empty($category)) {
     http_response_code(404);
