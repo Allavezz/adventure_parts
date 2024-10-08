@@ -30,7 +30,7 @@
                         <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'../images/products/hero/' . $productHero . ' \')">
                             <div class="hero__content">
                                 <h2 class="hero__title"> ' . $productName . ' </h2>
-                                <a href="' . $productSlug . '" class="hero__link btn">Learn More</a>
+                                <a href="' . ROOT . '/products/' . $productSlug . '" class="hero__link btn">Learn More</a>
                             </div>
                         </div>
                     ';

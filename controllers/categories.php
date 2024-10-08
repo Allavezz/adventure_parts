@@ -10,10 +10,10 @@ require("models/products.php");
 
 $modelCategories = new Categories();
 $categories = $modelCategories->getAll();
-$category = $modelCategories->getById($id);
+$category = $modelCategories->getBySlug($id);
 
 $modelProducts = new Products();
-$products = $modelProducts->getProductsByCategoryId($id);
+$products = $modelProducts->getProductsByCategorySlug($id);
 
 // Sort categories alphabetically by category_name
 usort($categories, function ($a, $b) {
