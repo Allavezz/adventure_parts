@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure Parts</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <script defer src="./js/heroSlider.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/heroSlider.js"></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
     <main>
         <!-- Hero Section -->
-        <hero class="hero">
+        <section class="hero">
 
             <div class="hero__slides">
                 <?php
@@ -27,7 +27,7 @@
                     $activeClass = $isFirstSlide ? 'hero__slide--active' : '';
 
                     echo '
-                        <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'../images/products/hero/' . $productHero . ' \')">
+                        <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'/images/products/hero/' . $productHero . ' \')">
                             <div class="hero__content">
                                 <h2 class="hero__title"> ' . $productName . ' </h2>
                                 <a href="' . ROOT . '/products/' . $productSlug . '" class="hero__link btn">Learn More</a>
@@ -39,7 +39,7 @@
                 }
                 ?>
             </div>
-        </hero>
+        </section>
 
         <!-- Categories Gallery Section -->
         <section class="categories sc-padding">
@@ -54,7 +54,7 @@
                         <a href="' . ROOT . '/categories/' . $categorySlug . '">
 						    <div class="categories__item">
 							    <div class="categories__image">
-							        <img src="./images/categories/' . $categoryImage . '" alt=" ' . $categoryName . ' " />
+							        <img src="/images/categories/' . $categoryImage . '" alt=" ' . $categoryName . ' " />
 							    </div>
 							    <div class="categories__text">
 								    <h3 class="categories__title">' . $categoryName . '</h3>

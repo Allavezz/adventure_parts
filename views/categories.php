@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($category["category_name"], ENT_QUOTES, 'UTF-8') ?> - Adventure Parts</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <script defer src="../js/productsGallery.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/productsGallery.js"></script>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                             <div class="products__card">
                                 <a href="' . ROOT . '/products/' . $productSlug . '">
                                     <div class="products__image">
-                                        <img src="../images/products/thumbnail/' . $productImage . '" alt="' . $productName . '"/>
+                                        <img src="/images/products/thumbnail/' . $productImage . '" alt="' . $productName . '"/>
                                     </div>
                                     <div class="products__text">
                                         <h3 class="products__title">' . $productName . '</h3>

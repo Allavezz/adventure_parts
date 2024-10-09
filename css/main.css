@@ -592,11 +592,16 @@ figcaption {
   margin: 0 auto;
 }
 .product-hero__stock {
+  text-transform: uppercase;
   color: var(--white);
   background-color: #008001;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
+}
+.product-hero__stock--empty {
+  background-color: #a7584b;
 }
 .product-hero__title {
   color: var(--brand);
@@ -604,6 +609,7 @@ figcaption {
   margin: 1rem 0;
 }
 .product-hero__link {
+  font-family: "Oswald", sans-serif;
   text-transform: uppercase;
   font-size: 1.25rem;
   font-weight: 700;
