@@ -10,12 +10,19 @@ require("models/products.php");
 $modelProducts = new Products();
 
 $product = $modelProducts->getBySlug($slug);
-$productHero = $modelProducts->getProductHero($slug);
-$productDescriptions = $modelProducts->getDescriptionsWithContent($slug);
 
 if (empty($product)) {
     http_response_code(404);
     die("Not Found");
+}
+
+$productHero = $modelProducts->getProductHero($slug);
+$productDescriptions = $modelProducts->getProductDescriptions($slug);
+
+$contents = [];
+foreach ($productDescriptions as $description) {
+    $descriptionId = $description["product_descriptions_id"];
+    $contents[$descriptionId] = $modelProducts->getContentByDescriptionId($descriptionId);
 }
 
 require("views/products.php");

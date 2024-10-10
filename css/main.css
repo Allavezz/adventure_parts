@@ -633,6 +633,9 @@ figcaption {
   align-items: center;
   gap: 4rem;
 }
+.product-description__title {
+  text-align: center;
+}
 .product-description__title strong {
   color: var(--brand);
 }
@@ -644,10 +647,11 @@ figcaption {
 .product-description__item {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   align-items: center;
   gap: 4rem;
 }
-.product-description__item--inverse {
+.product-description__item--reverse {
   flex-direction: row-reverse;
 }
 .product-description__text {
@@ -661,9 +665,13 @@ figcaption {
 .product-description__text ol li {
   list-style: unset;
   margin-left: 1rem;
+  margin-bottom: 0.5rem;
 }
 .product-description__text span {
   color: var(--brand);
+}
+.product-description__text p {
+  margin-bottom: 1rem;
 }
 .product-description__image {
   flex: 1;

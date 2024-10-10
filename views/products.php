@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($product["product_name"], ENT_QUOTES, 'UTF-8') ?> - Adventure Parts</title>
+    <title><?= $product["product_name"] ?> - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -13,40 +13,78 @@
     <?php require("templates/header.php"); ?>
 
     <main>
-        <section class="product-hero" style="background-image: url('/images/products/hero/<?= htmlspecialchars($productHero["hero_image_url"], ENT_QUOTES, 'UTF-8') ?>')">
+        <section class="product-hero" style="background-image: url('/images/products/hero/<?= $productHero["hero_image_url"] ?>')">
             <div class="product-hero__content">
                 <?php
-
-                $stock = htmlspecialchars($product["stock"], ENT_QUOTES, 'UTF-8');
-
-                if ($stock < 1) {
+                if ($product["stock"] < 1) {
                     echo '
                         <span class="product-hero__stock product-hero__stock--empty">Out of Stock</span>
                     ';
                 } else {
                     echo '
-                        <span class="product-hero__stock">' . $stock . ' in stock</span>
+                        <span class="product-hero__stock">' . $product["stock"] . ' in stock</span>
                     ';
                 }
                 ?>
-                <h2 class="product-hero__title"><?= htmlspecialchars($product["product_name"], ENT_QUOTES, 'UTF-8') ?></h2>
-                <a href="" class="product-hero__link btn">Order now for €<?= htmlspecialchars($product["price"], ENT_QUOTES, 'UTF-8') ?></a>
+                <h2 class="product-hero__title"><?= $product["product_name"] ?></h2>
+                <a href="" class="product-hero__link btn">Order now for €<?= $product["price"] ?></a>
             </div>
         </section>
 
         <section class="product-description sc-padding-b">
             <div class="product-description__container">
                 <h2 class="product-description__title title">
-                    <span><?= htmlspecialchars($product["product_name"], ENT_QUOTES, 'UTF-8') ?></span>
+                    <span><?= $product["product_name"] ?></span>
                     <br>
                     <strong>features and benefits</strong>
                 </h2>
                 <div class="product-description__content">
+                    <?php
+                    foreach ($productDescriptions as $index => $description) {
+                        $descriptionId = $description['product_descriptions_id'];
+                        $descriptionContents = $contents[$descriptionId] ?? [];
 
+                        $flexDirection = ($index % 2 === 0) ?
+                            'product-description__item' : 'product-description__item product-description__item--reverse';
+                    ?>
+                        <div class="<?= $flexDirection ?>">
+                            <div class="product-description__text">
+                                <h3><?= $description["title"] ?></h3>
+                                <?php
+                                foreach ($descriptionContents as $content) {
+                                    if ($content["content_type"] === 'paragraph') {
+                                        $paragraphs = explode(";", $content["content"]);
+
+                                        foreach ($paragraphs as $paragraph) {
+                                            echo '<p class="text">' . $paragraph . '</p>';
+                                        }
+                                    } elseif ($content["content_type"] === 'list') {
+                                        $list = explode(";", $content["content"]);
+
+                                        echo '<ol>';
+                                        foreach ($list as $listItem) {
+                                            echo '<li class="text">' . $listItem . '</li>';
+                                        }
+                                        echo '</ol>';
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class="product-description__image">
+                                <img src="/images/products/description/<?= $description["image_url"] ?>" alt="<?= $description["image_alt"] ?>" />
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>
+
+
     </main>
+
+
 
     <?php require("templates/footer.php"); ?>
 </body>

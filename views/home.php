@@ -20,17 +20,13 @@
                 <?php
                 $isFirstSlide = true;
                 foreach ($products as $product) {
-                    $productName = htmlspecialchars($product["product_name"], ENT_QUOTES, 'UTF-8');
-                    $productSlug = htmlspecialchars($product["product_slug"], ENT_QUOTES, 'UTF-8');
-                    $productHero = htmlspecialchars($product["hero_image_url"], ENT_QUOTES, 'UTF-8');
-
                     $activeClass = $isFirstSlide ? 'hero__slide--active' : '';
 
                     echo '
-                        <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'/images/products/hero/' . $productHero . ' \')">
+                        <div class="hero__slide ' . $activeClass . '" style="background-image: url(\'/images/products/hero/' . $product["hero_image_url"] . ' \')">
                             <div class="hero__content">
-                                <h2 class="hero__title"> ' . $productName . ' </h2>
-                                <a href="' . ROOT . '/products/' . $productSlug . '" class="hero__link btn">Learn More</a>
+                                <h2 class="hero__title"> ' . $product["product_name"] . ' </h2>
+                                <a href="' . ROOT . '/products/' . $product["product_slug"] . '" class="hero__link btn">Learn More</a>
                             </div>
                         </div>
                     ';
@@ -46,18 +42,14 @@
             <div class="categories__container">
                 <?php
                 foreach ($categories as $category) {
-                    $categoryImage = htmlspecialchars($category["category_image"], ENT_QUOTES, 'UTF-8');
-                    $categoryName = htmlspecialchars($category["category_name"], ENT_QUOTES, 'UTF-8');
-                    $categorySlug = htmlspecialchars($category["category_slug"], ENT_QUOTES, 'UTF-8');
-
                     echo '
-                        <a href="' . ROOT . '/categories/' . $categorySlug . '">
+                        <a href="' . ROOT . '/categories/' . $category["category_slug"] . '">
 						    <div class="categories__item">
 							    <div class="categories__image">
-							        <img src="/images/categories/' . $categoryImage . '" alt=" ' . $categoryName . ' " />
+							        <img src="/images/categories/' . $category["category_image"] . '" alt=" ' . $category["category_name"] . ' " />
 							    </div>
 							    <div class="categories__text">
-								    <h3 class="categories__title">' . $categoryName . '</h3>
+								    <h3 class="categories__title">' . $category["category_name"] . '</h3>
 								    <h4 class="categories__cta">Pick Your Bike</h4>
 							    </div>
 						    </div>
@@ -72,22 +64,19 @@
         <!-- About Us -->
         <?php
         if ($about) {
-            $aboutTitle = htmlspecialchars($about["about_title"], ENT_QUOTES, 'UTF-8');
-            $aboutImage = htmlspecialchars($about["about_image"], ENT_QUOTES, 'UTF-8');
-            $aboutAlt = htmlspecialchars($about["image_alt"], ENT_QUOTES, 'UTF-8');
             $aboutParagraphs = explode(";", $about["about_text"]);
         }
         ?>
         <section class="about sc-padding-b">
             <div class="about__container">
                 <div class="about__image">
-                    <img src="../images/about/<?= $aboutImage ?>" alt="<?= $aboutAlt ?>">
+                    <img src="../images/about/<?= $about["about_image"] ?>" alt="<?= $about["image_alt"] ?>">
                 </div>
                 <div class="about__content">
-                    <h2 class="title"><?= $aboutTitle ?></h2>
+                    <h2 class="title"><?= $about["about_title"] ?></h2>
                     <?php
-                    foreach ($aboutParagraphs as $paragraph) {
-                        echo "<p class='text'>" . htmlspecialchars(trim($paragraph), ENT_QUOTES, 'UTF-8') . "</p>";
+                    foreach (explode(";", $about["about_text"]) as $paragraph) {
+                        echo "<p class='text'>" . $paragraph . "</p>";
                     }
                     ?>
                 </div>

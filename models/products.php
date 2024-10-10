@@ -84,38 +84,47 @@ class Products extends Base
         return $query->fetch();
     }
 
-    public function getDescriptionsWithContent($slug)
+    public function getProductDescriptions($slug)
     {
-        $product = $this->getBySlug($slug);
-
-        if (!$product) {
-            return [];
-        }
-
-        $productId = $product["product_id"];
-
         $query = $this->db->prepare("
             SELECT 
+                p.product_id,
                 pd.product_descriptions_id, 
                 pd.title, 
                 pd.image_url, 
-                pd.image_alt, 
-                pd.sort_order, 
-                dc.content_id, 
-                dc.content_type, 
-                dc. content, 
-                dc.sort_order 
+                pd.image_alt 
             FROM 
                 product_descriptions pd 
-            LEFT JOIN 
-                descriptions_content dc ON pd.product_descriptions_id = dc.product_descriptions_id 
+            JOIN 
+                products p ON pd.product_id = p.product_id 
             WHERE 
-                pd.product_id = ? 
+                p.product_slug = ? 
             ORDER BY 
-                pd.sort_order, dc.sort_order
+                pd.sort_order
+
         ");
 
-        $query->execute([$productId]);
+        $query->execute([$slug]);
+
+        return $query->fetchAll();
+    }
+
+    public function getContentByDescriptionId($descriptionId)
+    {
+        $query = $this->db->prepare("
+            SELECT 
+                c.content_id, 
+                c.content_type, 
+                c.content 
+            FROM 
+                descriptions_content c 
+            WHERE 
+                c.product_descriptions_id = ? 
+            ORDER BY 
+                c.sort_order
+        ");
+
+        $query->execute([$descriptionId]);
 
         return $query->fetchAll();
     }

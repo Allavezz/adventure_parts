@@ -9,8 +9,15 @@ require("models/categories.php");
 require("models/products.php");
 
 $modelCategories = new Categories();
-$categories = $modelCategories->getAll();
+
 $category = $modelCategories->getBySlug($slug);
+
+if (empty($category)) {
+    http_response_code(404);
+    die("Not Found");
+}
+
+$categories = $modelCategories->getAll();
 
 $modelProducts = new Products();
 $products = $modelProducts->getProductsByCategorySlug($slug);
@@ -19,11 +26,5 @@ $products = $modelProducts->getProductsByCategorySlug($slug);
 usort($categories, function ($a, $b) {
     return strcmp($a["category_name"], $b["category_name"]);
 });
-
-
-if (empty($category)) {
-    http_response_code(404);
-    die("Not Found");
-}
 
 require("views/categories.php");
