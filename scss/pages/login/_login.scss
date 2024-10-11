@@ -1,0 +1,67 @@
+@use '../../abstracts' as *;
+
+.login {
+	background-color: var(--bg-w);
+
+	&__container {
+		margin: 0 auto;
+		width: 400px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 1rem 2rem;
+		border-radius: 4px;
+
+		h1 {
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__form {
+		width: 100%;
+	}
+
+	&__field {
+		display: flex;
+		flex-direction: column;
+		color: var(--text);
+
+		label {
+			font-family: 'Oswald', sans-serif;
+			font-size: 1.5rem;
+		}
+
+		input {
+			border: 1px solid var(--nav);
+			margin-bottom: 1rem;
+			padding: 0.5rem;
+			color: var(--text);
+		}
+	}
+
+	&__submit {
+		font-family: 'Oswald', sans-serif;
+		margin-bottom: 1.5rem;
+
+		button {
+			font-size: 1.25rem;
+			border: unset;
+			padding: 0.5rem 1.5rem;
+		}
+	}
+
+	&__signup {
+		display: flex;
+		justify-content: space-between;
+		font-size: 1.25rem;
+		font-family: 'Oswald', sans-serif;
+
+		span {
+			color: var(--title1);
+		}
+
+		a {
+			color: var(--brand);
+		}
+	}
+}

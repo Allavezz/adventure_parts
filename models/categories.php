@@ -6,15 +6,14 @@ class Categories extends Base
 {
     public function getAll()
     {
-        $query = $this->db->prepare(" 
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 category_id, 
                 category_name, 
                 category_slug, 
                 category_image, 
                 sort_order 
             FROM 
-                categories 
+                categories
         ");
 
         $query->execute();
@@ -22,10 +21,9 @@ class Categories extends Base
         return $query->fetchAll();
     }
 
-    public function getBySlug($slug)
+    public function get($slug)
     {
-        $query = $this->db->prepare(" 
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 category_id, 
                 category_name, 
                 category_slug, 

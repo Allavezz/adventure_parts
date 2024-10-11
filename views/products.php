@@ -81,7 +81,37 @@
             </div>
         </section>
 
-
+        <section class="product-cta sc-padding-b">
+            <div class="product-cta__container sc-padding-b">
+                <div class="product-cta__action">
+                    <h2 class="title">Order the <span><?= $product["product_name"] ?></span> now.</h2>
+                    <a href="#" class="btn">Order now for €<?= $product["price"] ?></a>
+                </div>
+                <div class="product-cta__description">
+                    <h3>It takes just a few seconds:</h3>
+                    <ol>
+                        <li>Click on the order button</li>
+                        <li>Fill in your delivery address and production year of your bike</li>
+                        <li>Choose credit card or PayPal payment</li>
+                        <li>The package will be shipped usually within three working days all around the world with tracking number</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="sc-padding product-cta__icons">
+                <div class="product-cta__icon">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span>In stock now</span>
+                </div>
+                <div class="product-cta__icon">
+                    <i class="fa-solid fa-earth-asia"></i>
+                    <span>We ship worldwide</span>
+                </div>
+                <div class="product-cta__icon">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                    <span>100% money back guarantee</span>
+                </div>
+            </div>
+        </section>
     </main>
 
 

@@ -5,7 +5,17 @@
             <ul class="header__nav-links">
                 <li><a href="<?= ROOT ?>/categories/all">Parts</a></li>
                 <li><a href="support.html">Support</a></li>
-                <li><a href="#">Login</a></li>
+                <?php
+                if (isset($_SESSION["user_id"])) {
+                    echo '
+                        <li><a href="' . ROOT . '/logout/"> Logout</a></li>
+                    ';
+                } else {
+                    echo '
+                        <li><a href="' . ROOT . '/login/">Login</a></li>
+                    ';
+                }
+                ?>
                 <li><a href="cart.html">Cart</a></li>
             </ul>
         </nav>

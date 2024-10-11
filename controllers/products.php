@@ -2,7 +2,7 @@
 
 if (empty($slug) || !preg_match('/^[a-z0-9-]+$/', $slug)) {
     http_response_code(400);
-    die("invalid REquest");
+    die("invalid Request");
 }
 
 require("models/products.php");

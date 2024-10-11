@@ -6,15 +6,17 @@ class Products extends Base
 {
     public function getFeaturedProducts()
     {
-        $query = $this->db->prepare(" 
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 products.product_id, 
                 products.product_name, 
                 products.product_slug, 
                 products_hero.hero_image_url 
-            FROM products 
-            JOIN products_hero ON products.product_id = products_hero.product_id 
-            WHERE products.is_featured = 1
+            FROM 
+                products 
+            JOIN 
+                products_hero ON products.product_id = products_hero.product_id 
+            WHERE 
+                products.is_featured = 1
         ");
 
         $query->execute();
@@ -24,13 +26,13 @@ class Products extends Base
 
     public function getProductsByCategorySlug($slug)
     {
-        $query = $this->db->prepare(" 
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 p.product_id, 
                 p.product_name, 
                 p.product_slug, 
                 p.product_image 
-            FROM products p 
+            FROM 
+                products p 
             JOIN 
                 product_categories pc ON p.product_id = pc.product_id 
             JOIN 
@@ -46,8 +48,7 @@ class Products extends Base
 
     public function getBySlug($slug)
     {
-        $query = $this->db->prepare("
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 product_id, 
                 product_name, 
                 product_slug, 
@@ -58,7 +59,7 @@ class Products extends Base
             FROM 
                 products 
             WHERE 
-                product_slug= ?
+                product_slug = ?
         ");
 
         $query->execute([$slug]);
@@ -68,15 +69,14 @@ class Products extends Base
 
     public function getProductHero($slug)
     {
-        $query = $this->db->prepare(" 
-            SELECT  
+        $query = $this->db->prepare("SELECT  
                 products_hero.hero_image_url 
             FROM 
                 products 
             JOIN 
                 products_hero ON products.product_id = products_hero.product_id 
             WHERE 
-            products.product_slug = ?
+                products.product_slug = ?
         ");
 
         $query->execute([$slug]);
@@ -86,8 +86,7 @@ class Products extends Base
 
     public function getProductDescriptions($slug)
     {
-        $query = $this->db->prepare("
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 p.product_id,
                 pd.product_descriptions_id, 
                 pd.title, 
@@ -111,8 +110,7 @@ class Products extends Base
 
     public function getContentByDescriptionId($descriptionId)
     {
-        $query = $this->db->prepare("
-            SELECT 
+        $query = $this->db->prepare("SELECT 
                 c.content_id, 
                 c.content_type, 
                 c.content 

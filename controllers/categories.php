@@ -10,7 +10,7 @@ require("models/products.php");
 
 $modelCategories = new Categories();
 
-$category = $modelCategories->getBySlug($slug);
+$category = $modelCategories->get($slug);
 
 if (empty($category)) {
     http_response_code(404);

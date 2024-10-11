@@ -6,6 +6,7 @@ define("ROOT", "");
 
 $url_parts = explode("/", $_SERVER["REQUEST_URI"]);
 
+
 $controller = $url_parts[1];
 
 if (empty($controller)) {
