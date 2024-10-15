@@ -39,4 +39,17 @@ class Categories extends Base
 
         return $query->fetch();
     }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT 
+            COUNT(*)
+        FROM 
+            categories
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }

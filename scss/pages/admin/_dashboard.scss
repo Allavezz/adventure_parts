@@ -1,0 +1,11 @@
+@use '../../abstracts' as *;
+
+.dashboard {
+	width: calc(100% - 250px);
+	height: 100dvh;
+	background-color: var(--bg-w);
+	float: right;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

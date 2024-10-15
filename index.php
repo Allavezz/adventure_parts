@@ -6,20 +6,29 @@ define("ROOT", "");
 
 $url_parts = explode("/", $_SERVER["REQUEST_URI"]);
 
+if (isset($url_parts[1]) && $url_parts[1] === "admin") {
 
-$controller = $url_parts[1];
+    $controller = isset($url_parts[2]) && !empty($url_parts[2]) ? $url_parts[2] : "dashboard";
 
-if (empty($controller)) {
-    $controller = "home";
+    $slug = isset($url_parts[3]) ? $url_parts[3] : null;
+
+    if (!file_exists("controllers/admin/" . $controller . ".php")) {
+        http_response_code(404);
+        die("Not Found");
+    }
+
+    require("controllers/admin/" . $controller . ".php");
+} else {
+
+    $controller = isset($url_parts[1]) && !empty($url_parts[1]) ? $url_parts[1] : "home";
+
+    $slug = isset($url_parts[2]) ? $url_parts[2] : null;
+
+
+    if (!file_exists("controllers/" . $controller . ".php")) {
+        http_response_code(404);
+        die("Not Found");
+    }
+
+    require("controllers/" . $controller . ".php");
 }
-
-if (!empty($url_parts[2])) {
-    $slug = $url_parts[2];
-}
-
-if (!file_exists("controllers/" . $controller . ".php")) {
-    http_response_code(404);
-    die("Not Found");
-}
-
-require("controllers/" . $controller . ".php");
