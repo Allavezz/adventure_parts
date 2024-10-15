@@ -16,7 +16,7 @@
                     ';
                 }
                 ?>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="<?= ROOT ?>/cart/">Cart</a></li>
             </ul>
         </nav>
     </div>

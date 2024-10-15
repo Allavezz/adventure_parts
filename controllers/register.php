@@ -53,6 +53,7 @@ if (isset($_POST["send"])) {
 
             $_SESSION["user_id"] = $createUser["user_id"];
             header("Location: " . ROOT . "/cart/");
+            exit();
         } else {
             $message = "This email is already in use";
         }

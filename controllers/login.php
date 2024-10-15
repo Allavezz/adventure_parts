@@ -25,6 +25,7 @@ if (isset($_POST["send"])) {
         ) {
             $_SESSION["user_id"] = $user["user_id"];
             header("Location: " . ROOT . "/");
+            exit();
         } else {
             $message = "Incorrect Email or Password";
         }
