@@ -84,6 +84,22 @@ class Products extends Base
         return $query->fetch();
     }
 
+    public function updateStock($item)
+    {
+        $query = $this->db->prepare("UPDATE 
+            products 
+        SET 
+            stock = stock - ? 
+        WHERE 
+            product_id = ?
+        ");
+
+        return $query->execute([
+            $item["quantity"],
+            $item["product_id"]
+        ]);
+    }
+
     public function getProductHero($slug)
     {
         $query = $this->db->prepare("SELECT  

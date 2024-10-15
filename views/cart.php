@@ -176,7 +176,7 @@
                             </tbody>
                         </table>
                     </form>
-                    <a href="checkout.html" class="btn cart__checkout">Proceed to checkout</a>
+                    <a href="<?= ROOT ?>/checkout/" class="btn cart__checkout">Proceed to checkout</a>
                 </div>
             </section>
         <?php
