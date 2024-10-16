@@ -17,4 +17,17 @@ class Countries extends Base
 
         return $query->fetchAll();
     }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT 
+            COUNT(*) 
+        FROM 
+            countries
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }

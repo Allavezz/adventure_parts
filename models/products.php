@@ -159,4 +159,17 @@ class Products extends Base
 
         return $query->fetchAll();
     }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT 
+            COUNT(*) 
+        FROM 
+            products
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }

@@ -13,7 +13,56 @@
 
     <main class="dashboard sc-padding-b">
         <h1>Dashboard</h1>
-        <p><?= $categoryCount ?></p>
+        <div class="dashboard__stats">
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $usersCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Users</span>
+                </div>
+            </div>
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $countriesCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Countries</span>
+                </div>
+            </div>
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $categoriesCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Categories</span>
+                </div>
+            </div>
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $productsCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Products</span>
+                </div>
+            </div>
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $ordersCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Orders</span>
+                </div>
+            </div>
+            <div class="dashboard__item-wrapper">
+                <div class="dashboard__count">
+                    <span><?= $categoriesCount ?></span>
+                </div>
+                <div class="dashboard__item-name">
+                    <span>Admins</span>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>

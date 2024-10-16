@@ -1,6 +1,6 @@
 <?php
 
-require("base.php");
+require_once("base.php");
 
 class Orders extends Base
 {
@@ -42,5 +42,18 @@ class Orders extends Base
     public function getPaymentRef()
     {
         return mt_rand(10000000000000, 99999999999999);
+    }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT 
+            COUNT(*) 
+        FROM 
+            orders
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
     }
 }

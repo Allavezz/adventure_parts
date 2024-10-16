@@ -2,10 +2,47 @@
 
 .dashboard {
 	width: calc(100% - 250px);
-	height: 100dvh;
+	min-height: 100dvh;
 	background-color: var(--bg-w);
 	float: right;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 4rem;
+	font-family: 'Oswald', sans-serif;
+
+	h1 {
+		font-size: 3rem;
+		color: var(--title1);
+	}
+
+	&__stats {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 3rem;
+	}
+
+	&__item-wrapper {
+		border: 1px solid var(--nav);
+		border-radius: 4px;
+		text-align: center;
+		background-color: var(--white);
+		color: var(--nav);
+	}
+
+	&__count {
+		font-size: 5rem;
+
+		padding: 2rem;
+	}
+
+	&__item-name {
+		color: var(--title1);
+		padding: 1rem;
+		font-size: 2rem;
+		font-weight: 500;
+	}
 }

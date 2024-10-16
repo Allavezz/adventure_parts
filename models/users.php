@@ -50,4 +50,17 @@ class Users extends Base
 
         return $data;
     }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT 
+            COUNT(*) 
+        FROM 
+            users
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }
