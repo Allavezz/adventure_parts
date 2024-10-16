@@ -40,4 +40,17 @@ class Admins extends Base
 
         return $data;
     }
+
+    public function getCount()
+    {
+        $query = $this->db->prepare("SELECT
+            COUNT(*) 
+        FROM 
+            admins
+        ");
+
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }

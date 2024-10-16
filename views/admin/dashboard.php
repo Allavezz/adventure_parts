@@ -56,7 +56,7 @@
             </div>
             <div class="dashboard__item-wrapper">
                 <div class="dashboard__count">
-                    <span><?= $categoriesCount ?></span>
+                    <span><?= $adminsCount ?></span>
                 </div>
                 <div class="dashboard__item-name">
                     <span>Admins</span>
