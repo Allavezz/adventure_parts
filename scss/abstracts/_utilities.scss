@@ -24,3 +24,9 @@
 		padding: 5rem 3rem 4.5rem;
 	}
 }
+
+.admin-layout {
+	width: calc(100% - 250px);
+	min-height: 100dvh;
+	float: right;
+}

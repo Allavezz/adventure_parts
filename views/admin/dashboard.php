@@ -11,7 +11,7 @@
 <body>
     <?php require("templates/nav.php") ?>
 
-    <main class="dashboard sc-padding-b">
+    <main class="dashboard sc-padding-b admin-layout">
         <h1>Dashboard</h1>
         <div class="dashboard__stats">
             <div class="dashboard__item-wrapper">
