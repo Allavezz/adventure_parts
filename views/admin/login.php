@@ -13,6 +13,17 @@
     <section class="login  sc-padding-b">
 
         <?php
+        if (isset($_SESSION["flash_message"])) {
+            echo '
+                    <div>
+                        <span>' . $_SESSION["flash_message"] . '</span>
+                    </div>      
+                ';
+            unset($_SESSION["success_message"]);
+        }
+        ?>
+
+        <?php
         if (isset($message)) {
             echo '<p role="alert">' . $message . '</p>';
         }

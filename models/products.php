@@ -24,7 +24,7 @@ class Products extends Base
         return $query->fetchAll();
     }
 
-    public function getProductsByCategorySlug($slug)
+    public function getProductsByCategorySlug($id)
     {
         $query = $this->db->prepare("SELECT 
                 p.product_id, 
@@ -41,12 +41,12 @@ class Products extends Base
                 c.category_slug = ?
         ");
 
-        $query->execute([$slug]);
+        $query->execute([$id]);
 
         return $query->fetchAll();
     }
 
-    public function getBySlug($slug)
+    public function getBySlug($id)
     {
         $query = $this->db->prepare("SELECT 
                 product_id, 
@@ -62,7 +62,7 @@ class Products extends Base
                 product_slug = ?
         ");
 
-        $query->execute([$slug]);
+        $query->execute([$id]);
 
         return $query->fetch();
     }
@@ -100,7 +100,7 @@ class Products extends Base
         ]);
     }
 
-    public function getProductHero($slug)
+    public function getProductHero($id)
     {
         $query = $this->db->prepare("SELECT  
                 products_hero.hero_image_url 
@@ -112,12 +112,12 @@ class Products extends Base
                 products.product_slug = ?
         ");
 
-        $query->execute([$slug]);
+        $query->execute([$id]);
 
         return $query->fetch();
     }
 
-    public function getProductDescriptions($slug)
+    public function getProductDescriptions($id)
     {
         $query = $this->db->prepare("SELECT 
                 p.product_id,
@@ -136,7 +136,7 @@ class Products extends Base
 
         ");
 
-        $query->execute([$slug]);
+        $query->execute([$id]);
 
         return $query->fetchAll();
     }

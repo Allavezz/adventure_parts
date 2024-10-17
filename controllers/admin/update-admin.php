@@ -6,7 +6,22 @@ if (!isset($_SESSION["admin_id"])) {
     exit();
 }
 
-if (isset($_POST["create"])) {
+if (empty($id) || !is_numeric($id)) {
+    http_response_code(400);
+    die("Invalid Request");
+}
+
+require("models/admins.php");
+
+$model = new Admins();
+$admin = $model->get($id);
+
+if (empty($admin)) {
+    http_response_code(404);
+    die("Not found");
+}
+
+if (isset($_POST["update"])) {
 
     if (
         !empty($_POST["name"]) &&
@@ -22,26 +37,19 @@ if (isset($_POST["create"])) {
         mb_strlen($_POST["password"]) >= 8 &&
         mb_strlen($_POST["password"]) <= 1000
     ) {
-        require("models/admins.php");
-        $model = new Admins();
-        $admin = $model->getByEmail($_POST["email"]);
+        $updateAdmin = $model->update($_POST, $id);
 
-        if (empty($admin)) {
-            $createAdmin = $model->create($_POST);
-
-            if ($createAdmin && isset($createAdmin["admin_id"])) {
-                $_SESSION["success_message"] = "Admin created successfully";
-                header("Location: " . ROOT . "/admin/admins");
-                exit();
-            } else {
-                $_SESSION["error_message"] = "There was an error creating the admin. Please try again.";
-            }
+        if ($updateAdmin) {
+            $_SESSION["success_message"] = "Admin updated successfully";
+            header("Location: " . ROOT . "/admin/admins");
+            exit();
         } else {
-            $_SESSION["error_message"] = "This email is already in use";
+            $_SESSION["error_message"] = "There was an error updating the admin. Please try again";
         }
     } else {
         $_SESSION["error_message"] = "Fill all the fields correctly";
     }
 }
 
-require("views/admin/create-admin.php");
+
+require("views/admin/update-admin.php");

@@ -21,7 +21,7 @@ class Categories extends Base
         return $query->fetchAll();
     }
 
-    public function get($slug)
+    public function get($id)
     {
         $query = $this->db->prepare("SELECT 
                 category_id, 
@@ -32,10 +32,10 @@ class Categories extends Base
             FROM 
                 categories 
             WHERE 
-                category_slug= ?
+                category_slug = ?
         ");
 
-        $query->execute([$slug]);
+        $query->execute([$id]);
 
         return $query->fetch();
     }

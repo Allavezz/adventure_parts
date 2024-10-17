@@ -10,7 +10,7 @@ if (isset($url_parts[1]) && $url_parts[1] === "admin") {
 
     $controller = isset($url_parts[2]) && !empty($url_parts[2]) ? $url_parts[2] : "dashboard";
 
-    $slug = isset($url_parts[3]) ? $url_parts[3] : null;
+    $id = isset($url_parts[3]) ? $url_parts[3] : null;
 
     if (!file_exists("controllers/admin/" . $controller . ".php")) {
         http_response_code(404);
@@ -22,7 +22,7 @@ if (isset($url_parts[1]) && $url_parts[1] === "admin") {
 
     $controller = isset($url_parts[1]) && !empty($url_parts[1]) ? $url_parts[1] : "home";
 
-    $slug = isset($url_parts[2]) ? $url_parts[2] : null;
+    $id = isset($url_parts[2]) ? $url_parts[2] : null;
 
 
     if (!file_exists("controllers/" . $controller . ".php")) {
