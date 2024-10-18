@@ -9,7 +9,7 @@ require("models/products.php");
 
 $modelProducts = new Products();
 
-$product = $modelProducts->getBySlug($sid);
+$product = $modelProducts->getBySlug($id);
 
 if (empty($product)) {
     http_response_code(404);

@@ -4,6 +4,7 @@
     <nav>
         <ul>
             <li><a href="<?= ROOT ?>/admin/">Dashboard</a></li>
+            <li><a href="<?= ROOT ?>/admin/about">About Section</a></li>
             <li><a href="<?= ROOT ?>/admin/users/">Users</a></li>
             <li><a href="<?= ROOT ?>/admin/countries/">Countries</a></li>
             <li><a href="<?= ROOT ?>/admin/categories/">Categories</a></li>
@@ -13,5 +14,10 @@
             <li><a href="<?= ROOT ?>/admin/logout/">Logout</a></li>
         </ul>
     </nav>
+    <div>
+        <span><?= $_SESSION["name"] ?></span>
+        <span>Employee N. <?= $_SESSION["employee_number"] ?></span>
+        <span><?= $_SESSION["email"] ?></span>
+    </div>
 
 </aside>

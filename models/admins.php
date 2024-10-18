@@ -8,7 +8,10 @@ class Admins extends Base
     {
         $query = $this->db->prepare("SELECT 
             admin_id, 
-            password 
+            name, 
+            employee_number, 
+            password, 
+            email
         FROM 
             admins 
         WHERE 

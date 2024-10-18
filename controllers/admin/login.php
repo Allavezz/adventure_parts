@@ -23,6 +23,10 @@ if (isset($_POST["send"])) {
             password_verify($_POST["password"], $admin["password"])
         ) {
             $_SESSION["admin_id"] = $admin["admin_id"];
+            $_SESSION["name"] = $admin["name"];
+            $_SESSION["employee_number"] = $admin["employee_number"];
+            $_SESSION["email"] = $admin["email"];
+
             header("Location: " . ROOT . "/admin/");
             exit();
         } else {

@@ -1,30 +1,36 @@
 <?php
 
 if (isset($_GET["add-to-cart"])) {
-    require("models/products.php");
 
-    $model = new Products();
-    $product = $model->getBySlug($_GET['add-to-cart']);
+    $cartSlug = ($_GET["add-to-cart"]);
 
-    if (!empty($product) && $product["stock"] > 0) {
+    if (preg_match('/^[a-zA-Z0-9\-]+$/', $cartSlug)) {
 
-        if (isset($_SESSION["cart"][$product["product_id"]])) {
+        require("models/products.php");
 
-            $_SESSION["cart"][$product["product_id"]]["quantity"] += 1;
-        } else {
+        $model = new Products();
+        $product = $model->getBySlug($_GET['add-to-cart']);
 
-            $_SESSION["cart"][$product["product_id"]] = [
-                "product_id" => $product["product_id"],
-                "quantity" => 1,
-                "name" => $product["product_name"],
-                "price" => $product["price"],
-                "stock" => $product["stock"]
-            ];
+        if (!empty($product) && $product["stock"] > 0) {
+
+            if (isset($_SESSION["cart"][$product["product_id"]])) {
+
+                $_SESSION["cart"][$product["product_id"]]["quantity"] += 1;
+            } else {
+
+                $_SESSION["cart"][$product["product_id"]] = [
+                    "product_id" => $product["product_id"],
+                    "quantity" => 1,
+                    "name" => $product["product_name"],
+                    "price" => $product["price"],
+                    "stock" => $product["stock"]
+                ];
+            }
         }
-    }
 
-    header("Location: " . ROOT . "/cart/");
-    exit();
+        header("Location: " . ROOT . "/cart/");
+        exit();
+    }
 }
 
 

@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script>
+        window.addEventListener("load", function() {
+            const url = new URL(window.location);
+            if (url.searchParams.get("message")) {
+                // Remove the 'message' query parameter
+                url.searchParams.delete("message");
+                window.history.replaceState({}, document.title, url.toString());
+            }
+        });
+    </script>
 </head>
 
 <body>
 
     <section class="login  sc-padding-b">
 
-        <?php
-        if (isset($_SESSION["flash_message"])) {
-            echo '
-                    <div>
-                        <span>' . $_SESSION["flash_message"] . '</span>
-                    </div>      
-                ';
-            unset($_SESSION["success_message"]);
-        }
-        ?>
+        <?php if (isset($_GET['message'])): ?>
+            <div class="message success">
+                <?php echo htmlspecialchars($_GET['message']); ?>
+            </div>
+        <?php endif; ?>
 
         <?php
         if (isset($message)) {

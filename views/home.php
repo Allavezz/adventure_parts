@@ -62,11 +62,6 @@
         </section>
 
         <!-- About Us -->
-        <?php
-        if ($about) {
-            $aboutParagraphs = explode(";", $about["about_text"]);
-        }
-        ?>
         <section class="about sc-padding-b">
             <div class="about__container">
                 <div class="about__image">

@@ -25,11 +25,12 @@ $deleteAdmin = $model->delete($id);
 
 if ($deleteAdmin) {
     if ($id == $_SESSION["admin_id"]) {
+        $message = urlencode("The account deleted was your own. You have been logged out.");
 
         session_unset();
         session_destroy();
 
-        header("Location: " . ROOT . "/admin/login/");
+        header("Location: " . ROOT . "/admin/login/?message=" . $message);
         exit();
     } else {
         $_SESSION["success_message"] = "Admin deleted successfully";
