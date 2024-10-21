@@ -61,7 +61,9 @@ class Admins extends Base
 
     public function create($data)
     {
-        $query = $this->db->prepare("INSERT INTO admins 
+        $query = $this->db->prepare("INSERT 
+        INTO 
+            admins 
             (name, 
             employee_number, 
             email, 

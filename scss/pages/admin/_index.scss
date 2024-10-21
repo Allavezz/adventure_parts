@@ -5,5 +5,8 @@
 @forward './create-admin';
 @forward './update-admin';
 @forward './users';
-@forward './update_user';
+@forward './update-user';
 @forward './countries';
+@forward './create-country';
+@forward './update-country';
+@forward './categories';

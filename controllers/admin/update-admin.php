@@ -18,7 +18,7 @@ $admin = $model->get($id);
 
 if (empty($admin)) {
     http_response_code(404);
-    die("Not found");
+    die("Not Found");
 }
 
 if (isset($_POST["update"])) {

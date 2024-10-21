@@ -10,4 +10,4 @@ function changeSlide() {
 	slides[currentIndex].classList.add('hero__slide--active');
 }
 
-setInterval(changeSlide, 7000);
+setInterval(changeSlide, 5000);

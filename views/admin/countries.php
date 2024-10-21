@@ -29,6 +29,22 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <?php
+                        foreach ($countries as $country) {
+                            echo '
+                                <tr>
+                                    <th>' . $country["code"] . '</th>
+                                    <th>' . $country["name"] . '</th>
+                                    <th>
+                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-country/' . $country["code"] . '">Update Country</a>
+                                        <a class="btn btn--small" href="' . ROOT . '/admin/delete-country/' . $country["code"] . '">Delete Country</a>
+                                    </th>
+                                </tr>
+                            ';
+                        }
+                        ?>
+                    </tbody>
                 </table>
 
             </div>

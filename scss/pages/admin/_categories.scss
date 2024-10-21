@@ -1,0 +1,13 @@
+@use '../../abstracts' as *;
+
+.categories-layout {
+	margin-bottom: 4rem;
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+	}
+}
