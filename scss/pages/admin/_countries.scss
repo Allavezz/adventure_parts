@@ -1,0 +1,16 @@
+@use '../../abstracts' as *;
+
+.countries {
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__create {
+		font-size: 0.75rem;
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+	}
+}

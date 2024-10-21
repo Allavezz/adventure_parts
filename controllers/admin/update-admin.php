@@ -40,8 +40,9 @@ if (isset($_POST["update"])) {
         $updateAdmin = $model->update($_POST, $id);
 
         if ($updateAdmin) {
+
             $_SESSION["success_message"] = "Admin updated successfully";
-            header("Location: " . ROOT . "/admin/admins");
+            header("Location: " . ROOT . "/admin/admins/");
             exit();
         } else {
             $_SESSION["error_message"] = "There was an error updating the admin. Please try again";

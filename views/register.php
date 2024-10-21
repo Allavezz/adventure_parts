@@ -49,7 +49,7 @@
                     </div>
                     <div class="register__field">
                         <label for="postal_code">Postal Code</label>
-                        <input type="text" name="postal_code">
+                        <input type="text" name="postal_code" minlength="4" maxlength="20">
                     </div>
                     <div class="register__field">
                         <label for="country">Country</label>
