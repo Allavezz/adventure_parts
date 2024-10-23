@@ -46,7 +46,7 @@ class Products extends Base
         return $query->fetchAll();
     }
 
-    public function getBySlug($id)
+    public function get($id)
     {
         $query = $this->db->prepare("SELECT 
                 product_id, 

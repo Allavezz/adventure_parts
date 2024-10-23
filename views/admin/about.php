@@ -48,7 +48,7 @@
                                 <img src="/images/about/' . $image . '" alt="image">
                                 <span>' . $image . '</span>
                             </div>
-                            <form action=" ' . ROOT . ' "/admin/about/" method="POST">
+                            <form action=" ' . ROOT . '/admin/about/" method="POST">
                                 <input type="hidden" name="image" value="' . $image . '">
                                 <button class="btn btn--small" type="submit" name="delete">Delete</button>
                             </form>
@@ -60,9 +60,9 @@
                 </ul>
 
                 <form class="about-images__add-form" action="<?= ROOT ?>/admin/about/" method="POST" enctype="multipart/form-data">
-                    <label for="new_image">Upload an Image</label>
-                    <span>Requirements: <br> Unique Name <br> 1140x600 <br> Max size 2MB</span>
-                    <input type="file" name="new_image" id="new_image">
+                    <label for="about_new_image">Upload an Image</label>
+                    <span>Requirements: <br> Unique Name <br> 1140x600 <br> Max size 2MB <br> JPEG only</span>
+                    <input type="file" name="new_image" id="about_new_image">
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
 

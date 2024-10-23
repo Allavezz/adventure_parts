@@ -63,8 +63,6 @@ class About extends Base
     {
         $filePath = $directory . basename($image["name"]);
 
-
-
         if (move_uploaded_file($image["tmp_name"], $filePath)) {
             return true;
         }
