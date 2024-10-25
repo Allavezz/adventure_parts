@@ -14,7 +14,8 @@ if (isset($url_parts[1]) && $url_parts[1] === "admin") {
 
     if (!file_exists("controllers/admin/" . $controller . ".php")) {
         http_response_code(404);
-        die("Not Found");
+        include("controllers/error.php");
+        exit();
     }
 
     require("controllers/admin/" . $controller . ".php");
@@ -27,7 +28,8 @@ if (isset($url_parts[1]) && $url_parts[1] === "admin") {
 
     if (!file_exists("controllers/" . $controller . ".php")) {
         http_response_code(404);
-        die("Not Found");
+        include("controllers/error.php");
+        exit();
     }
 
     require("controllers/" . $controller . ".php");

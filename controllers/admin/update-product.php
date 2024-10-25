@@ -8,7 +8,8 @@ if (!isset($_SESSION["admin_id"])) {
 
 if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
     http_response_code(400);
-    die("Invalid Request");
+    include("controllers/error.php");
+    exit();
 }
 
 require("models/products.php");
@@ -18,7 +19,8 @@ $product = $model->get($id);
 
 if (empty($product)) {
     http_response_code(404);
-    die("Not Found");
+    include("controllers/error.php");
+    exit();
 }
 
 $existingImages = $model->getImages();

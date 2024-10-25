@@ -8,7 +8,8 @@ if (!isset($_SESSION["admin_id"])) {
 
 if (empty($id) || !is_numeric($id)) {
     http_response_code(400);
-    die("invalid Request");
+    include("controllers/error.php");
+    exit();
 }
 
 require("models/users.php");
@@ -18,7 +19,8 @@ $user = $model->get($id);
 
 if (empty($user)) {
     http_response_code(404);
-    die("Not Found");
+    include("controllers/error.php");
+    exit();
 }
 
 $deleteUser = $model->delete($id);

@@ -8,7 +8,8 @@ if (!isset($_SESSION["admin_id"])) {
 
 if (empty($id) || !preg_match('/^[A-Z]{2}$/', $id)) {
     http_response_code(400);
-    die("Invalid Request");
+    include("controllers/error.php");
+    exit();
 }
 
 require("models/countries.php");
@@ -18,7 +19,8 @@ $country = $model->get($id);
 
 if (empty($country)) {
     http_response_code(404);
-    die("Not Found");
+    include("controllers/error.php");
+    exit();
 }
 
 $deleteCountry = $model->delete($id);

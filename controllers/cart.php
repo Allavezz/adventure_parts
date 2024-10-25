@@ -9,7 +9,7 @@ if (isset($_GET["add-to-cart"])) {
         require("models/products.php");
 
         $model = new Products();
-        $product = $model->getBySlug($_GET['add-to-cart']);
+        $product = $model->get($_GET['add-to-cart']);
 
         if (!empty($product) && $product["stock"] > 0) {
 
