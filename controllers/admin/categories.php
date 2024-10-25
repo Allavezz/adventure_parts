@@ -73,7 +73,7 @@ if (isset($_POST["create"])) {
                 header("Location: " . ROOT . "/admin/categories/");
                 exit();
             } else {
-                $_SESSION["error_message"] = "There as an error creating the category. Please try again.";
+                $_SESSION["error_message"] = "There was an error creating the category. Please try again.";
             }
         } else {
             $_SESSION["error_message"] = "This category slug is already in use";

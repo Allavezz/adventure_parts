@@ -15,7 +15,7 @@
 
         <section class="categories-layout">
 
-            <h2 class="categories-layout__title title">Categories Section</h2>
+            <h2 class="categories-layout__title title">Categories</h2>
 
             <div class="categories-layout__container">
                 <div class="sc-padding-b categories__container">
@@ -62,7 +62,7 @@
                 </ul>
 
                 <form class="categories-images__add-form" action="<?= ROOT ?>/admin/categories/" method="POST" enctype="multipart/form-data">
-                    <label for="categories_new_image">Upload in Image</label>
+                    <label for="categories_new_image">Upload an Image</label>
                     <span>Requirements: <br> Unique Name <br> 600x440 <br> Max size 2MB <br> JPEG only</span>
                     <input type="file" name="new_image" id="categories_new_image">
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
@@ -120,17 +120,17 @@
                         <?php
                         foreach ($categories as $category) {
                             echo '
-                            <tr>
-                                <th>' . $category["category_id"] . '</th>
-                                <th>' . $category["category_name"] . '</th>
-                                <th>' . $category["category_slug"] . '</th>
-                                <th>' . $category["category_image"] . '</th>
-                                <th>
-                                    <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-category/' . $category["category_slug"] . '">Update Category</a>
-                                    <a class="btn btn--small" href="' . ROOT . '/admin/delete-category/' . $category["category_slug"] . '">Delete Category</a>
-                                </th>
-                            </tr>
-                        ';
+                                <tr>
+                                    <th>' . $category["category_id"] . '</th>
+                                    <th>' . $category["category_name"] . '</th>
+                                    <th>' . $category["category_slug"] . '</th>
+                                    <th>' . $category["category_image"] . '</th>
+                                    <th>
+                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-category/' . $category["category_slug"] . '">Update Category</a>
+                                        <a class="btn btn--small" href="' . ROOT . '/admin/delete-category/' . $category["category_slug"] . '">Delete Category</a>
+                                    </th>
+                                </tr>
+                            ';
                         }
                         ?>
                     </tbody>

@@ -15,12 +15,14 @@ require("models/categories.php");
 
 $model = new Categories();
 $category = $model->get($id);
-$existingImages = $model->getImages();
+
 
 if (empty($category)) {
     http_response_code(404);
     die("Not Found");
 }
+
+$existingImages = $model->getImages();
 
 if (isset($_POST["update"])) {
 

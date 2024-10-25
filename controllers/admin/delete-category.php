@@ -30,5 +30,4 @@ if ($deleteCategory) {
 } else {
 
     $_SESSION["error_message"] = "There was an error deleting the category. Please try again.";
-    header("Location: " . ROOT . "/admin/categories/");
 }

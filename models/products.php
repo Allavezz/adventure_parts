@@ -24,6 +24,22 @@ class Products extends Base
         return $query->fetchAll();
     }
 
+    public function updateFeatured($id, $newFeaturedStatus)
+    {
+        $query = $this->db->prepare("UPDATE 
+            products 
+        SET 
+            is_featured = ? 
+        WHERE 
+            product_slug = ?
+        ");
+
+        return $query->execute([
+            $newFeaturedStatus,
+            $id
+        ]);
+    }
+
     public function getProductsByCategorySlug($id)
     {
         $query = $this->db->prepare("SELECT 
@@ -44,27 +60,6 @@ class Products extends Base
         $query->execute([$id]);
 
         return $query->fetchAll();
-    }
-
-    public function get($id)
-    {
-        $query = $this->db->prepare("SELECT 
-                product_id, 
-                product_name, 
-                product_slug, 
-                product_image, 
-                price, 
-                stock, 
-                is_featured 
-            FROM 
-                products 
-            WHERE 
-                product_slug = ?
-        ");
-
-        $query->execute([$id]);
-
-        return $query->fetch();
     }
 
     public function checkStock($item)
@@ -98,6 +93,111 @@ class Products extends Base
             $item["quantity"],
             $item["product_id"]
         ]);
+    }
+
+    public function getAll()
+    {
+        $query = $this->db->prepare("SELECT 
+            product_id,
+            product_name,
+            product_slug,
+            product_image,
+            price, 
+            stock, 
+            is_featured
+        FROM 
+            products
+        ");
+
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function get($id)
+    {
+        $query = $this->db->prepare("SELECT 
+                product_id, 
+                product_name, 
+                product_slug, 
+                product_image, 
+                price, 
+                stock, 
+                is_featured 
+            FROM 
+                products 
+            WHERE 
+                product_slug = ?
+        ");
+
+        $query->execute([$id]);
+
+        return $query->fetch();
+    }
+
+    public function create($data)
+    {
+        $query = $this->db->prepare("INSERT 
+        INTO 
+            products 
+            (product_name, 
+            product_slug, 
+            product_image, 
+            price, 
+            stock) 
+        VALUES 
+            (?, ?, ?, ?, ?)
+        ");
+
+        $query->execute([
+            $data["product_name"],
+            $data["product_slug"],
+            $data["product_image"],
+            $data["price"],
+            $data["stock"]
+        ]);
+
+        $data["product_id"] = $this->db->lastInsertId();
+
+        return $data;
+    }
+
+    public function update($data, $id)
+    {
+        $query = $this->db->prepare("UPDATE 
+            products
+        SET 
+            product_name = ?,
+            product_slug = ?, 
+            product_image = ?,
+            price = ?,
+            stock = ?
+        WHERE 
+            product_slug = ?
+        ");
+
+        $query->execute([
+            $data["product_name"],
+            $data["product_slug"],
+            $data["product_image"],
+            $data["price"],
+            $data["stock"],
+            $id
+        ]);
+
+        return $data;
+    }
+
+    public function delete($id)
+    {
+        $query = $this->db->prepare("DELETE
+        FROM 
+            products
+        WHERE 
+            product_slug = ?
+        ");
+
+        return $query->execute([$id]);
     }
 
     public function getProductHero($id)
@@ -158,6 +258,45 @@ class Products extends Base
         $query->execute([$descriptionId]);
 
         return $query->fetchAll();
+    }
+
+    public function getImages($directory = "images/products/thumbnail/")
+    {
+        $images = [];
+
+        if (is_dir($directory)) {
+            $files = scandir($directory);
+
+            foreach ($files as $file) {
+
+                if ($file !== "." && $file !== ".." && preg_match('/\.(jpg|jpeg)$/i', $file)) {
+
+                    $images[] = $file;
+                }
+            }
+        }
+
+        return $images;
+    }
+
+    public function uploadImage($image, $directory = "images/products/thumbnail/")
+    {
+        $filePath = $directory . basename($image["name"]);
+
+        if (move_uploaded_file($image["tmp_name"], $filePath)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function deleteImage($image, $directory = "images/products/thumbnail/")
+    {
+        $filePath = $directory . $image;
+
+        if (file_exists($filePath)) {
+            return unlink($filePath);
+        }
+        return false;
     }
 
     public function getCount()

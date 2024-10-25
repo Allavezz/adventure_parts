@@ -31,8 +31,8 @@
                     foreach ($existingImages as $image) {
                         $selected = ($image == $category["category_image"]) ? "selected" : "";
                         echo '
-                                <option value="' . $image . '" ' . $selected . '>' . $image . '</option>
-                            ';
+                            <option value="' . $image . '" ' . $selected . '>' . $image . '</option>
+                        ';
                     }
                     ?>
                 </select>
