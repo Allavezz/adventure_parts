@@ -200,22 +200,6 @@ class Products extends Base
         return $query->execute([$id]);
     }
 
-    public function getProductHero($id)
-    {
-        $query = $this->db->prepare("SELECT  
-                products_hero.hero_image_url 
-            FROM 
-                products 
-            JOIN 
-                products_hero ON products.product_id = products_hero.product_id 
-            WHERE 
-                products.product_slug = ?
-        ");
-
-        $query->execute([$id]);
-
-        return $query->fetch();
-    }
 
     public function getProductDescriptions($id)
     {

@@ -3,10 +3,10 @@
 $errorMessage = "An unexpected error was occurred.";
 $statusCode = http_response_code();
 
-$homeUrl = "/";
+$homeUrl = ROOT . "/";
 
 if ((strpos($_SERVER["REQUEST_URI"], "admin") === 1) && isset($_SESSION["admin_id"])) {
-    $homeUrl = "/admin/";
+    $homeUrl = ROOT . "/admin";
 }
 
 switch ($statusCode) {

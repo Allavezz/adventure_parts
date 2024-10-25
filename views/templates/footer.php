@@ -26,7 +26,7 @@
                 <h3>Support</h3>
                 <ul>
                     <li>ap@adventureparts.com</li>
-                    <li>placeholder</li>
+                    <li>+351 912 345 678</li>
                 </ul>
             </div>
         </div>

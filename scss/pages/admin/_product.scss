@@ -1,0 +1,39 @@
+@use '../../abstracts' as *;
+
+.admin-product-hero {
+	margin-bottom: 4rem;
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+	}
+
+	&__hero {
+		padding: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	&__add-form {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: 1rem;
+		height: 100%;
+		border-radius: 4px;
+
+		label {
+			font-size: 2rem;
+			color: var(--title1);
+			font-family: 'Oswald', sans-serif;
+		}
+
+		span {
+			color: var(--title1);
+			font-family: 'Oswald', sans-serif;
+			font-size: 1.25rem;
+		}
+	}
+}

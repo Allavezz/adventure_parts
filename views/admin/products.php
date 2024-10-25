@@ -18,18 +18,20 @@
             <h2 class="products-layout__title title">Products</h2>
 
             <div class="products-layout__container sc-padding-b">
+
+                <span>Press to Edit the Content</span>
+
                 <div class="products-layout__gallery">
                     <?php
                     foreach ($products as $product) {
                         echo '
                             <div class="products__card">
-                                <a href="' . ROOT . '/products/' . $product["product_slug"] . '">
+                                <a href="' . ROOT . '/admin/product/' . $product["product_slug"] . '">
                                     <div class="products__image">
                                         <img src="/images/products/thumbnail/' . $product["product_image"] . '" alt="' . $product["product_name"] . '"/>
                                     </div>
                                     <div class="products__text">
                                         <h3 class="products__title">' . $product["product_name"] . '</h3>
-                                        <h4 class="products__cta">Edit Content</h4>
                                     </div>
                                 </a>
                             </div>

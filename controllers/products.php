@@ -9,7 +9,6 @@ if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
 require("models/products.php");
 
 $modelProducts = new Products();
-
 $product = $modelProducts->get($id);
 
 if (empty($product)) {
@@ -18,7 +17,11 @@ if (empty($product)) {
     exit();
 }
 
-$productHero = $modelProducts->getProductHero($id);
+require("models/products-hero.php");
+
+$modelProductHero = new ProductsHero();
+$productHero = $modelProductHero->get($id);
+
 $productDescriptions = $modelProducts->getProductDescriptions($id);
 
 $contents = [];
