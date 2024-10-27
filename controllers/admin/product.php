@@ -91,7 +91,7 @@ if (isset($_POST["update-hero"]) && isset($_FILES["new_image"])) {
 
 require("models/products-descriptions.php");
 $modelProductDescriptions = new ProductDescriptions;
-$productDescriptions = $modelProductDescriptions->get($id);
+$productDescriptions = $modelProductDescriptions->getByProductId($id);
 
 
 require("models/descriptions-content.php");

@@ -49,6 +49,10 @@
 		background-color: var(--bg-w);
 	}
 
+	&__delete {
+		align-self: start;
+	}
+
 	&__create-form {
 		display: flex;
 		flex-direction: column;

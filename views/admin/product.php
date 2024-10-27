@@ -117,6 +117,8 @@
                                     <img src="/images/products/description/<?= $description["image_url"] ?>" alt="<?= $description["image_alt"] ?>" />
                                 </div>
                             </div>
+
+                            <a class="btn btn--small admin-product-description__delete" href="<?= ROOT ?>/admin/delete-description/<?= $descriptionId ?>">Delete Description</a>
                         <?php
                         }
                         ?>

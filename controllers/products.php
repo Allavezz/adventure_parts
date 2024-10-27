@@ -23,7 +23,7 @@ $productHero = $modelProductHero->get($id);
 
 require("models/products-descriptions.php");
 $modelProductDescriptions = new ProductDescriptions;
-$productDescriptions = $modelProductDescriptions->get($id);
+$productDescriptions = $modelProductDescriptions->getByProductId($id);
 
 
 require("models/descriptions-content.php");

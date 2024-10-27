@@ -173,3 +173,61 @@
 		}
 	}
 }
+
+.product-categories {
+	margin-bottom: 4rem;
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+
+		table {
+			margin-bottom: 2rem;
+
+			thead {
+				tr {
+					color: var(--title1);
+					font-family: 'Oswald', sans-serif;
+					font-size: 1rem;
+
+					th {
+						padding: 0.25rem 0.5rem;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					color: var(--text);
+					text-align: left;
+					font-size: 0.75rem;
+
+					td {
+						padding: 0.25rem 0.5rem;
+						color: var(--text);
+
+						&:nth-child(5) {
+							font-size: 0.75rem;
+
+							a {
+								&:nth-child(1) {
+									margin-right: 0.5rem;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid var(--nav);
+			border-collapse: collapse;
+		}
+	}
+}

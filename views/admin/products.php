@@ -163,7 +163,7 @@
 
             <div class="product-categories__container sc-padding-b">
                 <form action="<?= ROOT ?>/admin/products" method="POST">
-                    <div class="product-categories__container sc-padding-b">
+                    <div class="product-categories__container">
                         <table>
                             <thead>
                                 <tr>
@@ -191,7 +191,7 @@
                         </table>
                     </div>
 
-                    <button type="submit" name="update_categories" class="button">Update Categories</button>
+                    <button type="submit" name="update_categories" class="btn btn-blue">Update Categories</button>
                 </form>
             </div>
 
