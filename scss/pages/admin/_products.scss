@@ -146,18 +146,18 @@
 					color: var(--text);
 					text-align: left;
 					font-size: 0.75rem;
-				}
 
-				th {
-					padding: 0.25rem 0.5rem;
-					color: var(--text);
+					td {
+						padding: 0.25rem 0.5rem;
+						color: var(--text);
 
-					&:nth-child(5) {
-						font-size: 0.75rem;
+						&:nth-child(5) {
+							font-size: 0.75rem;
 
-						a {
-							&:nth-child(1) {
-								margin-right: 0.5rem;
+							a {
+								&:nth-child(1) {
+									margin-right: 0.5rem;
+								}
 							}
 						}
 					}

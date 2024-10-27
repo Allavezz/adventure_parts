@@ -40,28 +40,6 @@ class Products extends Base
         ]);
     }
 
-    public function getProductsByCategorySlug($id)
-    {
-        $query = $this->db->prepare("SELECT 
-                p.product_id, 
-                p.product_name, 
-                p.product_slug, 
-                p.product_image 
-            FROM 
-                products p 
-            JOIN 
-                product_categories pc ON p.product_id = pc.product_id 
-            JOIN 
-                categories c ON c.category_id = pc.category_id 
-            WHERE 
-                c.category_slug = ?
-        ");
-
-        $query->execute([$id]);
-
-        return $query->fetchAll();
-    }
-
     public function checkStock($item)
     {
         $query = $this->db->prepare("
@@ -200,49 +178,6 @@ class Products extends Base
         return $query->execute([$id]);
     }
 
-
-    public function getProductDescriptions($id)
-    {
-        $query = $this->db->prepare("SELECT 
-                p.product_id,
-                pd.product_descriptions_id, 
-                pd.title, 
-                pd.image_url, 
-                pd.image_alt 
-            FROM 
-                product_descriptions pd 
-            JOIN 
-                products p ON pd.product_id = p.product_id 
-            WHERE 
-                p.product_slug = ? 
-            ORDER BY 
-                pd.sort_order
-
-        ");
-
-        $query->execute([$id]);
-
-        return $query->fetchAll();
-    }
-
-    public function getContentByDescriptionId($descriptionId)
-    {
-        $query = $this->db->prepare("SELECT 
-                c.content_id, 
-                c.content_type, 
-                c.content 
-            FROM 
-                descriptions_content c 
-            WHERE 
-                c.product_descriptions_id = ? 
-            ORDER BY 
-                c.sort_order
-        ");
-
-        $query->execute([$descriptionId]);
-
-        return $query->fetchAll();
-    }
 
     public function getImages($directory = "images/products/thumbnail/")
     {

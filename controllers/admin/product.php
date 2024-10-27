@@ -78,15 +78,79 @@ if (isset($_POST["update-hero"]) && isset($_FILES["new_image"])) {
         $deleteImage = $modelProductHero->deleteImage($currentImage);
         $createProductHero = $modelProductHero->update($id, $imageName);
 
-        if ($uploadImage) {
+        if ($uploadImage && $deleteImage && $createProductHero) {
 
-            header("Location: " . ROOT . "/admin/products");
+            header("Location: " . ROOT . "/admin/product/" . $id);
             exit();
         } else {
 
-            $error = "Failed to upload the image";
+            $error = "Failed to upload the Hero section";
         }
     }
 }
+
+require("models/products-descriptions.php");
+$modelProductDescriptions = new ProductDescriptions;
+$productDescriptions = $modelProductDescriptions->get($id);
+
+
+require("models/descriptions-content.php");
+$modelDescriptionContent = new DescriptionsContent;
+$contents = [];
+foreach ($productDescriptions as $description) {
+
+    $descriptionId = $description["product_descriptions_id"];
+
+    $contents[$descriptionId] = $modelDescriptionContent->get($descriptionId);
+}
+
+
+
+if (isset($_POST["create_description"])) {
+    // Falta criar validação dos campos, criar if() para cada passo e respectivos elses com os errors. Fica para o final se tiver tempo
+
+    $image = $_FILES["new_image"];
+    $imageName = basename($image["name"]);
+
+
+    $uploadImage = $modelProductDescriptions->uploadImage($image);
+
+    $createDescription = $modelProductDescriptions->create($_POST, $imageName, $id);
+
+    if ($createDescription) {
+        $descriptionId = $createDescription["product_descriptions_id"];
+
+        $contentTypes = [];
+        $contents = [];
+        $sortOrders = [];
+
+        // Collect content data into arrays
+        foreach ($_POST["new_content_type"] as $index => $contentType) {
+            $contentTypes[] = $contentType;
+            $contents[] = $_POST["new_content"][$index];
+            $sortOrders[] = $_POST["new_content_sort"][$index];
+        }
+
+        // Prepare and insert content items
+        foreach ($contentTypes as $index => $type) {
+            $data = [
+                "product_descriptions_id" => $descriptionId,
+                "content_type" => $type,
+                "content" => $contents[$index],
+                "sort_order" => $sortOrders[$index]
+            ];
+
+            $createDescriptionContent =
+                $modelDescriptionContent->create($data);
+        }
+
+        if ($createDescriptionContent) {
+
+            header("Location: " . ROOT . "/admin/product/" . $id);
+            exit();
+        }
+    }
+}
+
 
 require("views/admin/product.php");

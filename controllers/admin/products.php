@@ -99,4 +99,53 @@ if (isset($_POST["create"])) {
     }
 }
 
+require("models/categories.php");
+
+$modelCategories = new Categories();
+$categories = $modelCategories->getAll();
+
+usort($categories, function ($a, $b) {
+    return strcmp($a["category_name"], $b["category_name"]);
+});
+
+
+require("models/product-categories.php");
+$modelProductCategories = new ProductsCategories();
+$productCategories = [];
+
+foreach ($products as $product) {
+
+    $categoryId = $modelProductCategories->getProductCategories($product["product_id"]);
+    $productCategories[$product["product_id"]] = $categoryId;
+}
+
+if (isset($_POST["update_categories"])) {
+
+    foreach ($products as $product) {
+        $productId = $product['product_id'];
+        $existingCategories = $modelProductCategories->getProductCategories($productId);
+
+
+        foreach ($categories as $category) {
+            $categoryId = $category['category_id'];
+            $isChecked = isset($_POST['categories'][$productId][$categoryId]);
+
+            if ($isChecked) {
+
+                if (!in_array($categoryId, $existingCategories)) {
+                    $modelProductCategories->addProductToCategory($productId, $categoryId);
+                }
+            } else {
+
+                if (in_array($categoryId, $existingCategories)) {
+                    $modelProductCategories->removeProductFromCategory($productId, $categoryId);
+                }
+            }
+        }
+    }
+
+    header("Location: " . ROOT . "/admin/products/");
+    exit();
+}
+
 require("views/admin/products.php");

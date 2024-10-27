@@ -37,3 +37,51 @@
 		}
 	}
 }
+
+.admin-product-description {
+	margin-bottom: 4rem;
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+	}
+
+	&__create-form {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		width: 100%;
+
+		h3 {
+			font-size: 2rem;
+			margin-bottom: 2rem;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			gap: 1rem;
+
+			label {
+				font-size: 1.25rem;
+				color: var(--title1);
+				font-family: 'Oswald', sans-serif;
+			}
+
+			div {
+				display: flex;
+				flex-direction: column;
+				align-items: start;
+				gap: 1rem;
+
+				h4 {
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+}

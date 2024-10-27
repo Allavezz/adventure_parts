@@ -18,16 +18,22 @@ if (empty($product)) {
 }
 
 require("models/products-hero.php");
-
 $modelProductHero = new ProductsHero();
 $productHero = $modelProductHero->get($id);
 
-$productDescriptions = $modelProducts->getProductDescriptions($id);
+require("models/products-descriptions.php");
+$modelProductDescriptions = new ProductDescriptions;
+$productDescriptions = $modelProductDescriptions->get($id);
 
+
+require("models/descriptions-content.php");
+$modelDescriptionContent = new DescriptionsContent;
 $contents = [];
 foreach ($productDescriptions as $description) {
+
     $descriptionId = $description["product_descriptions_id"];
-    $contents[$descriptionId] = $modelProducts->getContentByDescriptionId($descriptionId);
+
+    $contents[$descriptionId] = $modelDescriptionContent->get($descriptionId);
 }
 
 require("views/products.php");

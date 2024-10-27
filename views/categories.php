@@ -42,7 +42,7 @@
                 <h2 class="title"><?= $category["category_name"] ?></h2>
                 <div class="products__gallery">
                     <?php
-                    foreach ($products as $product) {
+                    foreach ($categoryProducts as $product) {
                         echo '
                             <div class="products__card">
                                 <a href="' . ROOT . '/products/' . $product["product_slug"] . '">

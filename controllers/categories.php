@@ -7,10 +7,7 @@ if (empty($id) || !preg_match('/^[a-z0-9-]+$/', $id)) {
 }
 
 require("models/categories.php");
-require("models/products.php");
-
 $modelCategories = new Categories();
-
 $category = $modelCategories->get($id);
 
 if (empty($category)) {
@@ -21,8 +18,9 @@ if (empty($category)) {
 
 $categories = $modelCategories->getAll();
 
-$modelProducts = new Products();
-$products = $modelProducts->getProductsByCategorySlug($id);
+require("models/product-categories.php");
+$modelProductsCategory = new ProductsCategories();
+$categoryProducts = $modelProductsCategory->getProductsByCategory($id);
 
 // Sort categories alphabetically by category_name
 usort($categories, function ($a, $b) {

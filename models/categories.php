@@ -38,6 +38,7 @@ class Categories extends Base
         return $query->fetch();
     }
 
+
     public function create($data)
     {
         $query = $this->db->prepare("INSERT 

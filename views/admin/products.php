@@ -135,24 +135,64 @@
                         foreach ($products as $product) {
                             echo '
                                 <tr>
-                                    <th>' . $product["product_id"] . '</th>
-                                    <th>' . $product["product_name"] . '</th>
-                                    <th>' . $product["product_slug"] . '</th>
-                                    <th>' . $product["product_image"] . '</th>
-                                    <th>' . $product["price"] . '</th>
-                                    <th>' . $product["stock"] . '</th>
-                                    <th>' . ($product["is_featured"] ? "Yes" : "No") . '</th>
-                                    <th>
+                                    <td>' . $product["product_id"] . '</td>
+                                    <td>' . $product["product_name"] . '</td>
+                                    <td>' . $product["product_slug"] . '</td>
+                                    <td>' . $product["product_image"] . '</td>
+                                    <td>' . $product["price"] . '</td>
+                                    <td>' . $product["stock"] . '</td>
+                                    <td>' . ($product["is_featured"] ? "Yes" : "No") . '</td>
+                                    <td>
                                         <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/product-featured/' . $product["product_slug"] . '?current=' . $product["is_featured"] . '">Change Featured</a>
                                         <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-product/' . $product["product_slug"] . '">Update</a>
                                         <a class="btn btn--small" href="' . ROOT . '/admin/delete-product/' . $product["product_slug"] . '">Delete</a>
-                                    </th>
+                                    </td>
                                 </tr>
                             ';
                         }
                         ?>
                     </tbody>
                 </table>
+            </div>
+
+        </section>
+
+        <section class="product-categories">
+
+            <h2 class="product-categories__title title">Add Products to Categories</h2>
+
+            <div class="product-categories__container sc-padding-b">
+                <form action="<?= ROOT ?>/admin/products" method="POST">
+                    <div class="product-categories__container sc-padding-b">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <?php foreach ($categories as $category): ?>
+                                        <th><?= $category["category_name"] ?></th>
+                                    <?php endforeach; ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($products as $product): ?>
+                                    <tr>
+                                        <td><?= $product['product_name'] ?></td>
+                                        <?php foreach ($categories as $category): ?>
+                                            <td>
+                                                <input type="checkbox" name="categories[<?= $product['product_id'] ?>][<?= $category['category_id'] ?>]"
+                                                    <?php if (in_array($category['category_id'], $productCategories[$product['product_id']])): ?>
+                                                    checked
+                                                    <?php endif; ?>>
+                                            </td>
+                                        <?php endforeach; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button type="submit" name="update_categories" class="button">Update Categories</button>
+                </form>
             </div>
 
         </section>
