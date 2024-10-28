@@ -10,6 +10,10 @@ require("models/orders.php");
 
 $modelOrders = new Orders();
 
-$recentOrders = $modelOrders->getAll();
+$recentOrders = $modelOrders->getUnpaidAll();
+
+$paidOrders = $modelOrders->getPaidAll();
+
+$shippedOrders = $modelOrders->getShippedAll();
 
 require("views/admin/orders.php");

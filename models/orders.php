@@ -4,7 +4,7 @@ require_once("base.php");
 
 class Orders extends Base
 {
-    public function getAll()
+    public function getUnpaidAll()
     {
         $query = $this->db->prepare("SELECT
             o.order_id,
@@ -21,9 +21,53 @@ class Orders extends Base
         LEFT JOIN
             orderdetails od ON o.order_id = od.order_id
         WHERE 
-            o.payment_date IS null
+            o.payment_date IS NULL
         GROUP BY 
             o.order_id, o.user_id, o.order_date, o.payment_date, o.payment_reference, u.email
+        ");
+
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function getPaidAll()
+    {
+        $query = $this->db->prepare("SELECT
+            o.order_id,
+            o.user_id,
+            u.email,
+            o.order_date,
+            o.payment_date
+        FROM 
+            orders o
+        INNER JOIN 
+            users u ON o.user_id = u.user_id 
+        WHERE 
+            o.payment_date IS NOT NULL AND o.shipping_date IS NULL
+        ");
+
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function getShippedAll()
+    {
+        $query = $this->db->prepare("SELECT
+        o.order_id,
+            o.user_id,
+            u.email,
+            o.order_date,
+            o.payment_date,
+            o.shipping_date,
+            o.delivered_date
+        FROM 
+            orders o
+        INNER JOIN 
+            users u ON o.user_id = u.user_id 
+        WHERE 
+            o.payment_date IS NOT NULL AND o.shipping_date IS NOT NULL
         ");
 
         $query->execute();
@@ -112,6 +156,45 @@ class Orders extends Base
         $query->execute();
 
         return $query->fetchColumn();
+    }
+
+    public function updatePayment($id)
+    {
+        $query = $this->db->prepare("UPDATE 
+            orders
+        SET
+            payment_date = NOW()
+        WHERE 
+            order_id = ?
+        ");
+
+        return $query->execute([$id]);
+    }
+
+    public function updateShipping($id)
+    {
+        $query = $this->db->prepare("UPDATE
+            orders
+        SET
+            shipping_date = NOW() 
+        WHERE 
+            order_id = ?
+        ");
+
+        return $query->execute([$id]);
+    }
+
+    public function updateDelivering($id)
+    {
+        $query = $this->db->prepare("UPDATE
+            orders
+        SET
+            delivered_date = NOW() 
+        WHERE 
+            order_id = ?
+        ");
+
+        return $query->execute([$id]);
     }
 
     public function deleteOrder($id)

@@ -19,7 +19,7 @@
 
             <div class="products-layout__container sc-padding-b">
 
-                <span>Press to Edit the Content</span>
+                <span>Click to Edit the Content</span>
 
                 <div class="products-layout__gallery">
                     <?php
@@ -191,7 +191,7 @@
                         </table>
                     </div>
 
-                    <button type="submit" name="update_categories" class="btn btn-blue">Update Categories</button>
+                    <button type="submit" name="update_categories" class="btn btn-blue">Update</button>
                 </form>
             </div>
 

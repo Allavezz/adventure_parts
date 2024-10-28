@@ -11,8 +11,12 @@
 <body>
     <?php require("templates/header.php"); ?>
 
-    <main>
-        <h1>Order placed successfully</h1>
+    <main class="checkout sc-padding-b">
+        <h1 class="title">Order placed successfully</h1>
+        <p>Please dont leave this page without saving your Order Details!</p>
+        <p>Unpaid Orders will be deleted after 24 hours!</p>
+
+        <h2>Order Details</h2>
         <dl>
             <dt>Order Number</dt>
             <dd><?= $order_id ?></dd>
@@ -21,6 +25,10 @@
             <dt>Total</dt>
             <dd><?= $total ?>€</dd>
         </dl>
+
+
+
+
 
     </main>
 

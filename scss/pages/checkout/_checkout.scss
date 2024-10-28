@@ -3,88 +3,35 @@
 .checkout {
 	background-color: var(--bg-w);
 	font-family: 'Oswald', sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-	&__content {
-		max-width: 1200px;
-		margin: 0 auto 4rem;
-		display: flex;
-		justify-content: space-evenly;
+	h1 {
+		margin-bottom: 2rem;
 	}
 
-	&__details {
-		display: flex;
-		padding: 1rem;
-		flex-direction: column;
+	p {
+		margin-bottom: 1rem;
+	}
 
-		h3 {
-			color: #242321;
-			font-size: 1.25rem;
-			font-weight: 400;
-			margin-bottom: 1.25rem;
+	h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
+	}
+
+	dl {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		dt {
+			font-size: 1.5rem;
 		}
 
-		label {
+		dd {
 			margin-bottom: 1rem;
 		}
-
-		input,
-		select {
-			font-size: 1rem;
-			padding: 0.25rem;
-		}
-	}
-
-	&__order {
-		border-left: 1px solid #c1beb9;
-		padding: 1rem;
-		font-size: 1.5rem;
-
-		h3 {
-			color: #242321;
-
-			font-weight: 400;
-			margin-bottom: 1.25rem;
-		}
-
-		table {
-			background-color: var(--white);
-			border: 2px solid #c1beb9;
-
-			thead {
-				th {
-					border-bottom: 1px solid #c1beb9;
-					padding: 1rem;
-					color: #6d6d6d;
-				}
-			}
-
-			tbody {
-				td {
-					border-bottom: 1px solid #c1beb9;
-					padding: 1rem;
-					color: #6d6d6d;
-				}
-
-				td:nth-child(1) {
-					color: var(--black);
-				}
-			}
-
-			tfoot {
-				color: var(--brand);
-
-				th,
-				td {
-					padding: 1rem;
-				}
-			}
-		}
-	}
-
-	&__submit {
-		display: flex;
-		margin: 0 auto;
-		font-size: 1.5rem;
-		border: none;
 	}
 }

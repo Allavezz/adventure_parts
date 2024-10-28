@@ -47,7 +47,7 @@
                     echo '
                         <form class="admin-product-hero__add-form" action="' . ROOT . '/admin/product/' . $product["product_slug"] . '" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="current_image" value="' . $productHero["hero_image_url"] . '">
-                            <label for="product_hero_new_image">Update an Image</label>
+                            <label for="product_hero_new_image">Update Hero</label>
                             <span>Requirements: <br> Unique Name <br> 2000x600 <br> Max size 2MB <br> JPEG only</span>
                             <input type="file" name="new_image" id="product_hero_new_image">
                             <button class="btn btn-blue" type="submit" name="update-hero">Update</button>
@@ -56,7 +56,7 @@
                 } else {
                     echo '
                         <form class="admin-product-hero__add-form" action="' . ROOT . '/admin/product/' . $product["product_slug"] . '" method="POST" enctype="multipart/form-data">
-                            <label for="product_hero_new_image1">Upload an Image</label>
+                            <label for="product_hero_new_image1">Add Hero</label>
                             <span>Requirements: <br> Unique Name <br> 2000x600 <br> Max size 2MB <br> JPEG only</span>
                             <input type="file" name="new_image" id="product_hero_new_image1">
                             <button class="btn btn-blue" type="submit" name="add-hero">Add</button>
