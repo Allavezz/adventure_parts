@@ -12,13 +12,13 @@
     <?php require("templates/header.php"); ?>
 
     <main>
-        <h1>Compra Efetuada com Sucesso</h1>
+        <h1>Order placed successfully</h1>
         <dl>
-            <dt>Número Encomenda</dt>
+            <dt>Order Number</dt>
             <dd><?= $order_id ?></dd>
-            <dt>Referencia pagamento</dt>
+            <dt>Payment Reference</dt>
             <dd><?= $payment_reference ?></dd>
-            <dt>Total a pagar</dt>
+            <dt>Total</dt>
             <dd><?= $total ?>€</dd>
         </dl>
 

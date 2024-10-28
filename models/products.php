@@ -7,16 +7,16 @@ class Products extends Base
     public function getFeaturedProducts()
     {
         $query = $this->db->prepare("SELECT 
-                products.product_id, 
-                products.product_name, 
-                products.product_slug, 
-                products_hero.hero_image_url 
-            FROM 
-                products 
-            JOIN 
-                products_hero ON products.product_id = products_hero.product_id 
-            WHERE 
-                products.is_featured = 1
+            products.product_id, 
+            products.product_name, 
+            products.product_slug, 
+            products_hero.hero_image_url 
+        FROM 
+            products 
+        INNER JOIN 
+            products_hero ON products.product_id = products_hero.product_id 
+        WHERE 
+            products.is_featured = 1
         ");
 
         $query->execute();
@@ -57,7 +57,7 @@ class Products extends Base
         return $query->fetch();
     }
 
-    public function updateStock($item)
+    public function subtractStock($item)
     {
         $query = $this->db->prepare("UPDATE 
             products 
@@ -70,6 +70,22 @@ class Products extends Base
         return $query->execute([
             $item["quantity"],
             $item["product_id"]
+        ]);
+    }
+
+    public function sumStock($productId, $quantity)
+    {
+        $query = $this->db->prepare("UPDATE 
+            products
+        SET 
+            stock = stock + ? 
+        WHERE 
+            product_id = ?
+        ");
+
+        return $query->execute([
+            $quantity,
+            $productId
         ]);
     }
 
@@ -111,6 +127,37 @@ class Products extends Base
         $query->execute([$id]);
 
         return $query->fetch();
+    }
+
+    public function getDependentImages($id)
+    {
+        $query = $this->db->prepare("SELECT 
+            ph.hero_image_url AS image, 'hero' AS type
+        FROM 
+            products p 
+        INNER JOIN
+            products_hero ph ON p.product_id = ph.product_id 
+        WHERE
+            p.product_slug = ?
+
+        UNION ALL 
+
+        SELECT 
+            pd.image_url AS image, 'description' AS type
+        FROM 
+            products p
+        INNER JOIN 
+            product_descriptions pd ON p.product_id = pd.product_id 
+        WHERE
+            p.product_slug = ?
+        ");
+
+        $query->execute([
+            $id,
+            $id
+        ]);
+
+        return $query->fetchAll();
     }
 
     public function create($data)

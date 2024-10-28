@@ -41,5 +41,4 @@ if ($deleteAdmin) {
     }
 } else {
     $_SESSION["error_message"] = "There was an error deleting the admin. Please try again.";
-    header("Location: " . ROOT . "/admin/admins/");
 }

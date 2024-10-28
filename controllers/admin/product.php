@@ -47,7 +47,7 @@ if (isset($_POST["add-hero"]) && isset($_FILES["new_image"])) {
 
         if ($uploadImage) {
 
-            header("Location: " . ROOT . "/admin/products");
+            header("Location: " . ROOT . "/admin/product/" . $id);
             exit();
         } else {
 

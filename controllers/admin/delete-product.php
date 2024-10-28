@@ -23,6 +23,24 @@ if (empty($product)) {
     exit();
 }
 
+$dependentImages = $model->getDependentImages($id);
+
+require("models/products-hero.php");
+require("models/products-descriptions.php");
+$modelProductHero = new ProductsHero();
+$modelProductDescriptions = new ProductDescriptions();
+
+foreach ($dependentImages as $item) {
+    $image = $item["image"];
+    $type = $item["type"];
+
+    if ($type === 'hero') {
+        $modelProductHero->deleteImage($image);
+    } elseif ($type === 'description') {
+        $modelProductDescriptions->deleteImage($image);
+    }
+}
+
 $deleteProduct = $model->delete($id);
 
 if ($deleteProduct) {
