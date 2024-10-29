@@ -51,7 +51,8 @@ if (isset($_POST["send"])) {
         if (empty($user)) {
             $createUser = $model->create($_POST);
 
-            header("Location: " . ROOT . "/cart/");
+            $_SESSION["user_id"] = $createUser["user_id"];
+            header("Location: " . ROOT . "/");
             exit();
         } else {
             $message = "This email is already in use";

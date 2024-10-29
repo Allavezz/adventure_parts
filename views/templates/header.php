@@ -4,7 +4,8 @@
         <nav class="header__nav">
             <ul class="header__nav-links">
                 <li><a href="<?= ROOT ?>/categories/all">Parts</a></li>
-                <li><a href="support.html">Support</a></li>
+
+                <li><a href="<?= ROOT ?>/support/">Contact</a></li>
                 <?php
                 if (isset($_SESSION["user_id"])) {
                     echo '
