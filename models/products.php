@@ -101,6 +101,8 @@ class Products extends Base
             is_featured
         FROM 
             products
+        ORDER BY 
+            product_name ASC
         ");
 
         $query->execute();

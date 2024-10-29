@@ -12,8 +12,4 @@ $categories = $modelCategories->getAll();
 $about = $modelAbout->get();
 $products = $modelProducts->getFeaturedProducts();
 
-usort($categories, function ($a, $b) {
-    return strcmp($a["category_name"], $b["category_name"]);
-});
-
 require("views/home.php");

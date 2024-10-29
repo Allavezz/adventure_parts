@@ -4,12 +4,9 @@
             <div class="footer__item">
                 <h3>Shop</h3>
                 <ul>
-                    <li>
-                        <a href="<?= ROOT ?>/">Home</a>
-                    </li>
-                    <li>
-                        <a href="<?= ROOT ?>/categories/all">Parts</a>
-                    </li>
+                    <li><a href="<?= ROOT ?>/">Home</a></li>
+                    <li><a href="<?= ROOT ?>/categories/all">Parts</a></li>
+                    <li><a href="<?= ROOT ?>/contact/">Contact</a></li>
                 </ul>
             </div>
 
@@ -25,6 +22,7 @@
             <div class="footer__item">
                 <h3>Support</h3>
                 <ul>
+                    <li><a href="<?= ROOT ?>/contact/">Contact</a></li>
                     <li>ap@adventureparts.com</li>
                     <li>+351 912 345 678</li>
                 </ul>

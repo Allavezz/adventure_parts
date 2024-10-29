@@ -19,6 +19,8 @@ class ProductsCategories extends Base
                 categories c ON c.category_id = pc.category_id 
             WHERE 
                 c.category_slug = ?
+            ORDER BY
+                p.product_name ASC
         ");
 
         $query->execute([$id]);

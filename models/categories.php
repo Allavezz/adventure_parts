@@ -13,6 +13,8 @@ class Categories extends Base
                 category_image 
             FROM 
                 categories
+            ORDER BY 
+                category_name ASC
         ");
 
         $query->execute();

@@ -22,9 +22,4 @@ require("models/product-categories.php");
 $modelProductsCategory = new ProductsCategories();
 $categoryProducts = $modelProductsCategory->getProductsByCategory($id);
 
-// Sort categories alphabetically by category_name
-usort($categories, function ($a, $b) {
-    return strcmp($a["category_name"], $b["category_name"]);
-});
-
 require("views/categories.php");
