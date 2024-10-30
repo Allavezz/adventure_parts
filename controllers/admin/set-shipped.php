@@ -23,13 +23,14 @@ if (empty($order)) {
     exit();
 }
 
-$deliveredOrder = $modelOrders->updateDelivering($id);
+$shippedOrder = $modelOrders->updateShipping($id);
 
-if ($deliveredOrder) {
+if ($shippedOrder) {
 
+    $_SESSION["success_message"] = "Order setted as shipped successfully";
     header("Location: " . ROOT . "/admin/orders");
     exit();
 } else {
 
-    $error = "There was an error updating the shipping status. Please try again";
+    $_SESSION["shipped_error_message"] = "There was an error updating the shipping status. Please try again";
 }

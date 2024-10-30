@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admins - Adventure parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
@@ -13,30 +14,24 @@
 
     <main class="sc-padding-b admin-layout">
 
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
+        }
+        ?>
+        <?php if (isset($_SESSION['error_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['error_message'] . '</div>
+                ';
+            unset($_SESSION['error_message']);
+        }
+        ?>
+
         <section class="admins">
 
             <h2 class="title admins__title">Admins</h2>
-
-            <?php
-            if (isset($_SESSION["success_message"])) {
-                echo '
-                    <div>
-                        <span>' . $_SESSION["success_message"] . '</span>
-                    </div>      
-                ';
-                unset($_SESSION["success_message"]);
-            }
-            ?>
-            <?php
-            if (isset($_SESSION["error_message"])) {
-                echo '
-                    <div>
-                        <span>' . $_SESSION["error_message"] . '</span>
-                    </div>      
-                ';
-                unset($_SESSION["error_message"]);
-            }
-            ?>
 
             <div class="admins__container sc-padding-b">
 

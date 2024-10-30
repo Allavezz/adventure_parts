@@ -31,5 +31,9 @@ $deleteProductDescription = $model->delete($id);
 
 if ($deleteProductDescription) {
 
+    $_SESSION["success_message"] = "Description deleted successfully";
     header("Location: " . ROOT . "/admin/product/" . $productId);
+} else {
+
+    $_SESSION["delete_description_message"] = "There was an error deleting the description. Please try again later";
 }

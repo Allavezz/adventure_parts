@@ -4,14 +4,23 @@ if (isset($_GET["add-to-cart"])) {
 
     $cartSlug = ($_GET["add-to-cart"]);
 
+    $quantity = 1;
+
     if (preg_match('/^[a-zA-Z0-9\-]+$/', $cartSlug)) {
 
         require("models/products.php");
 
         $model = new Products();
-        $product = $model->get($_GET['add-to-cart']);
+        $product = $model->get($cartSlug);
+
+        $item = [$quantity, $cartSlug];
+
+
+
 
         if (!empty($product) && $product["stock"] > 0) {
+
+            $subtractStock = $model->subtractStock($quantity, $cartSlug);
 
             if (isset($_SESSION["cart"][$product["product_id"]])) {
 

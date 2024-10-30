@@ -19,8 +19,11 @@ if (isset($_POST["delete"]) && isset($_POST["image"])) {
 
     if ($deleteImage) {
 
+        $_SESSION["success_message"] = "Image deleted successfully";
         header("Location: " . ROOT . "/admin/about/");
         exit();
+    } else {
+        $deleteImageMessage = "There was an error deleting the image";
     }
 }
 
@@ -30,23 +33,31 @@ if (isset($_POST["add"]) && isset($_FILES["new_image"])) {
 
     if ($image["error"] !== UPLOAD_ERR_OK) {
 
-        $error = "An error occurred during the file upload.";
+        $newImageMessage = "An error occurred during the file upload.";
     } elseif (!in_array(mime_content_type($image["tmp_name"]), ["image/jpeg", "image/jpg"])) {
 
-        $error = "Invalid file type. Only JPEG images are allowed.";
+        $newImageMessage = "Invalid file type. Only JPEG images are allowed.";
     } elseif ($image["size"] > 2 * 1024 * 1024) {
 
-        $error = "File is too large. Maximum size allowed is 2MB.";
+        $newImageMessage = "File is too large. Maximum size allowed is 2MB.";
     } else {
 
-        $uploadImage = $model->uploadImage($image);
+        list($width, $height) = getimagesize($image["tmp_name"]);
 
-        if ($uploadImage) {
-
-            header("Location: " . ROOT . "/admin/about/");
-            exit();
+        if ($width !== 1140 || $height !== 600) {
+            $newImageMessage = "Invalid image dimensions. Image must be exactly 2000x600 pixels.";
         } else {
-            $error = "Failed to upload the image";
+
+            $uploadImage = $model->uploadImage($image);
+
+            if ($uploadImage) {
+
+                $_SESSION["success_message"] = "Image added successfully";
+                header("Location: " . ROOT . "/admin/about/");
+                exit();
+            } else {
+                $newImageMessage = "Failed to upload the image";
+            }
         }
     }
 }
@@ -67,14 +78,15 @@ if (isset($_POST["update"])) {
         $updateAbout = $model->update($_POST);
 
         if ($updateAbout) {
+
             $_SESSION["success_message"] = "About section updated successfully";
             header("Location: " . ROOT . "/admin/about");
             exit();
         } else {
-            $_SESSION["error_message"] = "There was an error updating the section. Please try again";
+            $updateMessage = "There was an error updating the section. Please try again";
         }
     } else {
-        $_SESSION["error_message"] = "Fill all the fields correctly";
+        $updateMessage = "Fill all the fields correctly";
     }
 }
 

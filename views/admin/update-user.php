@@ -16,6 +16,11 @@
         <h2 class="title">Update User</h2>
 
         <div class="update-user__form-container sc-padding-b">
+            <?php
+            if (isset($message)) {
+                echo '<p role="alert">' . $message . '</p>';
+            }
+            ?>
 
             <form method="POST" action="<?= ROOT ?>/admin/update-user/<?= $user["user_id"] ?>">
                 <div class="register__field">

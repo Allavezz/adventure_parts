@@ -15,13 +15,8 @@
         <h2 class="title">Update Country</h2>
 
         <?php
-        if (isset($_SESSION["error_message"])) {
-            echo '
-                    <div>
-                        <span>' . $_SESSION["error_message"] . '</span>
-                    </div>      
-                ';
-            unset($_SESSION["error_message"]);
+        if (isset($message)) {
+            echo '<p role="alert">' . $message . '</p>';
         }
         ?>
 

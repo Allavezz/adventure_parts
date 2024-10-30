@@ -24,7 +24,7 @@
 
         <?php if (isset($_GET['message'])): ?>
             <div class="message success">
-                <?php echo htmlspecialchars($_GET['message']); ?>
+                <?php echo htmlspecialchars(strip_tags(urldecode($_GET['message']))); ?>
             </div>
         <?php endif; ?>
 

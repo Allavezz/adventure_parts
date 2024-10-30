@@ -14,10 +14,8 @@
     <section class="login  sc-padding-b">
 
         <?php
-        if (isset($_GET['message']) && $_GET['message'] == 'account_deleted') {
-            echo '
-                <div class="flash-message">Your account has been deleted. You have been logged out.</div>
-            ';
+        if (isset($message)) {
+            echo '<p role="alert">' . $message . '</p>';
         }
         ?>
 

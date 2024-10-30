@@ -47,10 +47,10 @@ if (isset($_POST["update"])) {
             header("Location: " . ROOT . "/admin/admins/");
             exit();
         } else {
-            $_SESSION["error_message"] = "There was an error updating the admin. Please try again";
+            $message = "There was an error updating the admin. Please try again";
         }
     } else {
-        $_SESSION["error_message"] = "Fill all the fields correctly";
+        $message = "Fill all the fields correctly";
     }
 }
 

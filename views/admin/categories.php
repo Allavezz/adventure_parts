@@ -6,12 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
+
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
+        }
+        ?>
+        <?php if (isset($_SESSION['error_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['error_message'] . '</div>
+                ';
+            unset($_SESSION['error_message']);
+        }
+        ?>
 
         <section class="categories-layout">
 
@@ -43,6 +59,12 @@
             <h2 class="categories-images__title title">Images Stored</h2>
 
             <div class="sc-padding-b">
+
+                <?php
+                if (isset($deleteMessage)) {
+                    echo '<p role="alert">' . $deleteMessage . '</p>';
+                }
+                ?>
                 <ul>
                     <?php foreach ($existingImages as $image) {
                         echo '
@@ -67,6 +89,11 @@
                     <input type="file" name="new_image" id="categories_new_image">
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
+                <?php
+                if (isset($newImageMessage)) {
+                    echo '<p role="alert">' . $newImageMessage . '</p>';
+                }
+                ?>
 
             </div>
 
@@ -77,6 +104,13 @@
             <h2 class="add-category__title title">Add a Category</h2>
 
             <div class="sc-padding-b">
+
+                <?php
+                if (isset($newCategoryMessage)) {
+                    echo '<p role="alert">' . $newCategoryMessage . '</p>';
+                }
+                ?>
+
                 <form action="<?= ROOT ?>/admin/categories/" method="POST">
                     <label for="add_category_name">Category Name</label>
                     <input type="text" name="category_name" id="add_category_name" required minlength="3" maxlength="255">

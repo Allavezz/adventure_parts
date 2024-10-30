@@ -45,8 +45,10 @@ $deleteProduct = $model->delete($id);
 
 if ($deleteProduct) {
 
+    $_SESSION["success_message"] = "Product deleted successfully";
     header("Location: " . ROOT . "/admin/products/");
+    exit();
 } else {
 
-    $error = "There was an error deleting the product. Please try again";
+    $_SESSION["delete_product_error_message"] = "There was an error deleting the product. Please try again";
 }

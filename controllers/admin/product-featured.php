@@ -34,8 +34,9 @@ $featuredProduct = $model->updateFeatured($id, $newFeaturedStatus);
 
 if ($featuredProduct) {
 
+    $_SESSION["success_message"] = "Featured status updated successfully";
     header("Location: " . ROOT . "/admin/products");
 } else {
 
-    $error = "There was an error updating the featured status";
+    $featuredMessage = "There was an error updating the featured status";
 }

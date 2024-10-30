@@ -30,15 +30,15 @@ if (isset($_POST["create"])) {
                 exit();
             } else {
 
-                $_SESSION["error_message"] = "There was an error creating the country. Please try again.";
+                $message = "There was an error creating the country. Please try again.";
             }
         } else {
 
-            $_SESSION["error_message"] = "This country already exists";
+            $message = "This country already exists";
         }
     } else {
 
-        $_SESSION["error_message"] = "Fill all the fields correctly";
+        $message = "Fill all the fields correctly";
     }
 }
 

@@ -7,6 +7,7 @@
     <title>Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
     <script defer src="/js/heroSlider.js"></script>
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
@@ -39,6 +40,15 @@
 
         <!-- Categories Gallery Section -->
         <section class="categories sc-padding">
+
+            <?php if (isset($_SESSION['success_message'])) {
+                echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+                unset($_SESSION['success_message']);
+            }
+            ?>
+
             <div class="categories__container">
                 <?php
                 foreach ($categories as $category) {

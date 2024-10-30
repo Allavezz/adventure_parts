@@ -6,12 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
+
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
+        }
+        ?>
+        <?php if (isset($_SESSION['delete_product_error_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['delete_product_error_message'] . '</div>
+                ';
+            unset($_SESSION['delete_product_error_message']);
+        }
+        ?>
 
         <section class="products-layout">
 
@@ -73,6 +89,12 @@
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
 
+                <?php
+                if (isset($newImageMessage)) {
+                    echo '<p role="alert">' . $newImageMessage . '</p>';
+                }
+                ?>
+
             </div>
 
         </section>
@@ -82,6 +104,13 @@
             <h2 class="add-product__title title">Add a product</h2>
 
             <div class="sc-padding-b">
+
+                <?php
+                if (isset($addProductMessage)) {
+                    echo '<p role="alert">' . $addProductMessage . '</p>';
+                }
+                ?>
+
                 <form action="<?= ROOT ?>/admin/products/" method="POST">
                     <label for="add_product_name">Product Name</label>
                     <input type="text" name="product_name" id="add_product_name" minlength="3" maxlength="255" required>
@@ -117,6 +146,13 @@
             <h2 class="manage-product__title title">Manage Products</h2>
 
             <div class="manage-product__container sc-padding-b">
+
+                <?php
+                if (isset($featuredtMessage)) {
+                    echo '<p role="alert">' . $featuredMessage . '</p>';
+                }
+                ?>
+
                 <table>
                     <thead>
                         <tr>

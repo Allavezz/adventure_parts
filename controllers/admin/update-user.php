@@ -66,11 +66,11 @@ if (isset($_POST["update"])) {
             exit();
         } else {
 
-            $_SESSION["error_message"] = "There was an error updating the user. Please try again";
+            $message = "There was an error updating the user. Please try again";
         }
     } else {
 
-        $_SESSION["error_message"] = "Fill all the fields correctly";
+        $message = "Fill all the fields correctly";
     }
 }
 

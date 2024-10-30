@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
@@ -13,11 +14,33 @@
 
     <main class="sc-padding-b admin-layout">
 
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
+        }
+        ?>
+
+        <?php
+        if (isset($deleteMessage)) {
+            echo '<p role="alert">' . $deleteMessage . '</p>';
+        }
+        ?>
+
         <section class="orders">
 
             <h2 class="orders__title title">Recent Orders</h2>
 
             <div class="orders__container sc-padding-b">
+
+                <?php if (isset($_SESSION['paid_error_message'])) {
+                    echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+                    unset($_SESSION['paid_error_message']);
+                }
+                ?>
 
                 <table>
                     <thead>
@@ -46,7 +69,7 @@
                                     <td>Pending</td>
                                     <td>
                                         <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/order-details/' . $order["order_id"] . '">See Details</a>
-                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-payment/' . $order["order_id"] . '">Update Payment</a>
+                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/set-paid/' . $order["order_id"] . '">Set Paid</a>
                                         <a class="btn btn--small" href="' . ROOT . '/admin/delete-order/' . $order["order_id"] . '">Delete Order</a>
                                     </td>
                                 </tr>
@@ -64,6 +87,14 @@
             <h2 class="paid-orders__title title">Paid Orders</h2>
 
             <div class="paid-orders__container sc-padding-b">
+
+                <?php if (isset($_SESSION['shipped_error_message'])) {
+                    echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+                    unset($_SESSION['shipped_error_message']);
+                }
+                ?>
 
                 <table>
                     <thead>
@@ -90,7 +121,7 @@
                                     <td>Pending</td>
                                     <td>
                                         <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/order-details/' . $order["order_id"] . '">See Details</a>
-                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-shipping/' . $order["order_id"] . '">Update Shipping</a>
+                                        <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/set-shipped/' . $order["order_id"] . '">Set Shipped</a>
                                         <a class="btn btn--small" href="' . ROOT . '/admin/delete-order/' . $order["order_id"] . '">Delete Order</a>
                                     </td>
                                 </tr>
@@ -107,6 +138,22 @@
             <h2 class="shipped-orders__title title">Shipped Orders</h2>
 
             <div class="shipped-orders__container sc-padding-b">
+
+                <?php if (isset($_SESSION['close_message'])) {
+                    echo '
+                    <div id="flash-message">' . $_SESSION['close_message'] . '</div>
+                ';
+                    unset($_SESSION['close_message']);
+                }
+                ?>
+
+                <?php if (isset($_SESSION['delivered_error_message'])) {
+                    echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+                    unset($_SESSION['shipped_error_message']);
+                }
+                ?>
 
                 <table>
                     <thead>
@@ -155,7 +202,7 @@
                                 ';
                             } else {
                                 echo '
-                                    <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/update-delivering/' . $order["order_id"] . '">Update Delivering</a>
+                                    <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/set-delivered/' . $order["order_id"] . '">Set Delivered</a>
                                     <a class="btn btn--small" href="' . ROOT . '/admin/close-order/' . $order["order_id"] . '">Delete Order</a>
                                 ';
                             }

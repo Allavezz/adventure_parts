@@ -31,27 +31,35 @@ if (isset($_POST["add-hero"]) && isset($_FILES["new_image"])) {
 
     if ($image["error"] !== UPLOAD_ERR_OK) {
 
-        $error = "An error ocurred during the file upload.";
+        $bannerImageMessage = "An error ocurred during the file upload.";
     } elseif (!in_array(mime_content_type($image["tmp_name"]), ["image/jpeg", "image/jpg"])) {
 
-        $error = "Invalid file type. Only JPEG images are allowed.";
+        $bannerImageMessage = "Invalid file type. Only JPEG images are allowed.";
     } elseif ($image["size"] > 2 * 1024 * 1024) {
 
-        $error = "File is too large. Maximum size allowed is 2MB.";
+        $bannerImageMessage = "File is too large. Maximum size allowed is 2MB.";
     } else {
 
-        $imageName = basename($image["name"]);
+        list($width, $height) = getimagesize($image["tmp_name"]);
 
-        $uploadImage = $modelProductHero->uploadImage($image);
-        $createProductHero = $modelProductHero->create($id, $imageName);
-
-        if ($uploadImage) {
-
-            header("Location: " . ROOT . "/admin/product/" . $id);
-            exit();
+        if ($width !== 2000 || $height !== 600) {
+            $bannerImageMessage = "Invalid image dimensions. Image must be exactly 2000x600 pixels.";
         } else {
 
-            $error = "Failed to upload the image";
+            $imageName = basename($image["name"]);
+
+            $uploadImage = $modelProductHero->uploadImage($image);
+            $createProductHero = $modelProductHero->create($id, $imageName);
+
+            if ($uploadImage) {
+
+                $_SESSION["success_message"] = "Hero updated successfully";
+                header("Location: " . ROOT . "/admin/product/" . $id);
+                exit();
+            } else {
+
+                $bannerImageMessage = "Failed to upload the image";
+            }
         }
     }
 }
@@ -62,29 +70,37 @@ if (isset($_POST["update-hero"]) && isset($_FILES["new_image"])) {
 
     if ($image["error"] !== UPLOAD_ERR_OK) {
 
-        $error = "An error ocurred during the file upload.";
+        $bannerImageMessage = "An error ocurred during the file upload.";
     } elseif (!in_array(mime_content_type($image["tmp_name"]), ["image/jpeg", "image/jpg"])) {
 
-        $error = "Invalid file type. Only JPEG images are allowed.";
+        $bannerImageMessage = "Invalid file type. Only JPEG images are allowed.";
     } elseif ($image["size"] > 2 * 1024 * 1024) {
 
-        $error = "File is too large. Maximum size allowed is 2MB.";
+        $bannerImageMessage = "File is too large. Maximum size allowed is 2MB.";
     } else {
 
-        $imageName = basename($image["name"]);
-        $currentImage = $_POST["current_image"];
+        list($width, $height) = getimagesize($image["tmp_name"]);
 
-        $uploadImage = $modelProductHero->uploadImage($image);
-        $deleteImage = $modelProductHero->deleteImage($currentImage);
-        $createProductHero = $modelProductHero->update($id, $imageName);
-
-        if ($uploadImage && $deleteImage && $createProductHero) {
-
-            header("Location: " . ROOT . "/admin/product/" . $id);
-            exit();
+        if ($width !== 2000 || $height !== 600) {
+            $bannerImageMessage = "Invalid image dimensions. Image must be exactly 2000x600 pixels.";
         } else {
 
-            $error = "Failed to upload the Hero section";
+            $imageName = basename($image["name"]);
+            $currentImage = $_POST["current_image"];
+
+            $uploadImage = $modelProductHero->uploadImage($image);
+            $deleteImage = $modelProductHero->deleteImage($currentImage);
+            $createProductHero = $modelProductHero->update($id, $imageName);
+
+            if ($uploadImage && $deleteImage && $createProductHero) {
+
+                $_SESSION["success_message"] = "Hero updated successfully";
+                header("Location: " . ROOT . "/admin/product/" . $id);
+                exit();
+            } else {
+
+                $bannerImageMessage = "Failed to upload the Hero section";
+            }
         }
     }
 }
@@ -107,7 +123,7 @@ foreach ($productDescriptions as $description) {
 
 
 if (isset($_POST["create_description"])) {
-    // Falta criar validação dos campos, criar if() para cada passo e respectivos elses com os errors. Fica para o final se tiver tempo
+    // Falta criar validação dos campos, criar if() para cada passo e respectivos elses com os errors. Não é grave visto ser na área administrativa e termos validação client-sided. Fica para o final se tiver tempo
 
     $image = $_FILES["new_image"];
     $imageName = basename($image["name"]);
@@ -146,8 +162,11 @@ if (isset($_POST["create_description"])) {
 
         if ($createDescriptionContent) {
 
+            $_SESSION["success_message"] = "Product description created successfully";
             header("Location: " . ROOT . "/admin/product/" . $id);
             exit();
+        } else {
+            $descriptionMessage = "There was an error creating the product description. Please try again later";
         }
     }
 }

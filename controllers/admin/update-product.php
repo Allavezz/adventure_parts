@@ -52,15 +52,16 @@ if (isset($_POST["update"])) {
 
         if ($updateProduct) {
 
+            $_SESSION["success_message"] = "Product updated successfully";
             header("Location: " . ROOT . "/admin/products/");
             exit();
         } else {
 
-            $error = "There was an error updating the product. Please try again";
+            $message = "There was an error updating the product. Please try again";
         }
     } else {
 
-        $error = "Fill all the fields correctly";
+        $message = "Fill all the fields correctly";
     }
 }
 

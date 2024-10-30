@@ -60,14 +60,16 @@ if (isset($_POST["send"])) {
 
         if ($createContact) {
 
-            $message = "Success";
+            $_SESSION["success_message"] = "Form submitted successfully";
+            header("Location: " . ROOT . "/");
+            exit();
         } else {
 
-            $message = "Error query";
+            $message = "There was an error submitting the form. Please try again later";
         }
     } else {
 
-        $message = "Error fields";
+        $message = "Fill all the fields correctly";
     }
 }
 

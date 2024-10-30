@@ -17,6 +17,12 @@
 
         <div class="update-category__form-container sc-padding-b">
 
+            <?php
+            if (isset($message)) {
+                echo '<p role="alert">' . $message . '</p>';
+            }
+            ?>
+
             <form method="POST" action="<?= ROOT ?>/admin/update-category/<?= $category["category_slug"] ?>">
                 <label for="update_category_name">Category Name</label>
                 <input type="text" name="category_name" id="update_category_name" required minlength="3" maxlength="255" placeholder="<?= $category["category_name"] ?>">

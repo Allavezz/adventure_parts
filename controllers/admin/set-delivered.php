@@ -23,12 +23,14 @@ if (empty($order)) {
     exit();
 }
 
-$paidOrder = $modelOrders->updatePayment($id);
+$deliveredOrder = $modelOrders->updateDelivering($id);
 
-if ($paidOrder) {
+if ($deliveredOrder) {
 
+    $_SESSION["success_message"] = "Order setted as delivered successfully";
     header("Location: " . ROOT . "/admin/orders");
     exit();
 } else {
-    $error = "There was an error updating the payment status. Please try again";
+
+    $_SESSION["delivered_error_message"] = "There was an error updating the delivering status. Please try again";
 }

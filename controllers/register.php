@@ -52,6 +52,9 @@ if (isset($_POST["send"])) {
             $createUser = $model->create($_POST);
 
             $_SESSION["user_id"] = $createUser["user_id"];
+
+            $_SESSION["success_message"] = "Account created successfully";
+
             header("Location: " . ROOT . "/");
             exit();
         } else {

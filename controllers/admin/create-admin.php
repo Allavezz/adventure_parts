@@ -30,17 +30,18 @@ if (isset($_POST["create"])) {
             $createAdmin = $model->create($_POST);
 
             if ($createAdmin && isset($createAdmin["admin_id"])) {
+
                 $_SESSION["success_message"] = "Admin created successfully";
                 header("Location: " . ROOT . "/admin/admins");
                 exit();
             } else {
-                $_SESSION["error_message"] = "There was an error creating the admin. Please try again.";
+                $message = "There was an error creating the admin. Please try again.";
             }
         } else {
-            $_SESSION["error_message"] = "This email is already in use";
+            $message = "This email is already in use";
         }
     } else {
-        $_SESSION["error_message"] = "Fill all the fields correctly";
+        $message = "Fill all the fields correctly";
     }
 }
 

@@ -27,8 +27,10 @@ $deleteOrder = $modelOrders->deleteOrder($id);
 
 if ($deleteOrder) {
 
+    $_SESSION["success_message"] = "Order closed successfully";
     header("Location: " . ROOT . "/admin/orders");
     exit();
 } else {
-    $error = "There was an error deleting the order. Please try again";
+
+    $_SESSION["close_message"] = "There was an error closing the order. Please try again";
 }

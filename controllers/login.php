@@ -2,7 +2,6 @@
 
 if (isset($_POST["send"])) {
 
-    // Sanitization of all fields
     foreach ($_POST as $key => $value) {
         $_POST[$key] = htmlspecialchars(strip_tags(trim($value)));
     }

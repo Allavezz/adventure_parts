@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $product["product_name"] ?> - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
@@ -13,9 +14,11 @@
 
     <main class="sc-padding-b admin-layout">
 
-        <?php
-        if (isset($error)) {
-            echo '<p role="alert">' . $error . '</p>';
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
         }
         ?>
 
@@ -65,7 +68,15 @@
                 }
 
                 ?>
+
+                <?php
+                if (isset($bannerImageMessage)) {
+                    echo '<p role="alert">' . $bannerImageMessage . '</p>';
+                }
+                ?>
             </div>
+
+
 
         </section>
 
@@ -122,6 +133,14 @@
                         <?php
                         }
                         ?>
+
+                        <?php if (isset($_SESSION['delete_description_message'])) {
+                            echo '
+                                <div id="flash-message">' . $_SESSION['delete_description_message'] . '</div>
+                            ';
+                            unset($_SESSION['delete_description_message']);
+                        }
+                        ?>
                     </div>
                     <div class="admin-product-description__create-form">
 
@@ -163,9 +182,15 @@
 
                             </div>
 
-                            <button type="button" onclick="addNewContentItem()">Add more Content</button>
+                            <button class="btn- btn-blue btn--small" type="button" onclick="addNewContentItem()">Add more Content</button>
 
                             <button class="btn btn-blue" type="submit" name="create_description">Create Description</button>
+
+                            <?php
+                            if (isset($descriptionMessage)) {
+                                echo '<p role="alert">' . $descriptionMessage . '</p>';
+                            }
+                            ?>
 
                         </form>
 

@@ -19,6 +19,7 @@ if (isset($_POST["delete"]) && isset($_POST["image"])) {
 
     if ($deleteImage) {
 
+        $_SESSION["success_message"] = "Image Deleted Successfully";
         header("Location: " . ROOT . "/admin/products/");
         exit();
     }
@@ -30,24 +31,33 @@ if (isset($_POST["add"]) && isset($_FILES["new_image"])) {
 
     if ($image["error"] !== UPLOAD_ERR_OK) {
 
-        $error = "An error ocurred during the file upload.";
+        $newImageMessage = "An error ocurred during the file upload.";
     } elseif (!in_array(mime_content_type($image["tmp_name"]), ["image/jpeg", "image/jpg"])) {
 
-        $error = "Invalid file type. Only JPEG images are allowed.";
+        $newImageMessage = "Invalid file type. Only JPEG images are allowed.";
     } elseif ($image["size"] > 2 * 1024 * 1024) {
 
-        $error = "File is too large. Maximum size allowed is 2MB.";
+        $newImageMessage = "File is too large. Maximum size allowed is 2MB.";
     } else {
 
-        $uploadImage = $model->uploadImage($image);
+        list($width, $height) = getimagesize($image["tmp_name"]);
 
-        if ($uploadImage) {
+        if ($width !== 600 || $height !== 440) {
 
-            header("Location: " . ROOT . "/admin/products");
-            exit();
+            $newImageMessage = "Invalid image dimensions. Image must be exactly 600x440 pixels.";
         } else {
 
-            $error = "Failed to upload the image";
+            $uploadImage = $model->uploadImage($image);
+
+            if ($uploadImage) {
+
+                $_SESSION["success_message"] = "Image updated successfully";
+                header("Location: " . ROOT . "/admin/products/");
+                exit();
+            } else {
+
+                $newImageMessage = "Failed to upload the image";
+            }
         }
     }
 }
@@ -83,19 +93,20 @@ if (isset($_POST["create"])) {
 
             if ($createProduct) {
 
+                $_SESSION["success_message"] = "Product added successfully";
                 header("Location: " . ROOT . "/admin/products/");
                 exit();
             } else {
 
-                $error = "There was an error creating the product. Please try again";
+                $addProductMessage = "There was an error creating the product. Please try again";
             }
         } else {
 
-            $error = "This product slug is already in use";
+            $addProductMessage = "This product slug is already in use";
         }
     } else {
 
-        $error = "Fill all the fields correctly";
+        $addProductMessage = "Fill all the fields correctly";
     }
 }
 
@@ -103,10 +114,6 @@ require("models/categories.php");
 
 $modelCategories = new Categories();
 $categories = $modelCategories->getAll();
-
-usort($categories, function ($a, $b) {
-    return strcmp($a["category_name"], $b["category_name"]);
-});
 
 
 require("models/product-categories.php");
@@ -122,9 +129,9 @@ foreach ($products as $product) {
 if (isset($_POST["update_categories"])) {
 
     foreach ($products as $product) {
+
         $productId = $product['product_id'];
         $existingCategories = $modelProductCategories->getProductCategories($productId);
-
 
         foreach ($categories as $category) {
             $categoryId = $category['category_id'];
@@ -144,6 +151,7 @@ if (isset($_POST["update_categories"])) {
         }
     }
 
+    $_SESSION["success_message"] = "Products Categories updated successfully";
     header("Location: " . ROOT . "/admin/products/");
     exit();
 }

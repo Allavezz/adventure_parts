@@ -6,12 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Section - Adventure Parts</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/flashMessage.js"></script>
 </head>
 
 <body>
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
+
+        <?php if (isset($_SESSION['success_message'])) {
+            echo '
+                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                ';
+            unset($_SESSION['success_message']);
+        }
+        ?>
 
         <section class="about-layout">
 
@@ -40,6 +49,13 @@
             <h2 class="about-images__title title">Images Stored</h2>
 
             <div class="sc-padding-b">
+
+                <?php
+                if (isset($deleteImageMessage)) {
+                    echo '<p role="alert">' . $deleteImageMessage . '</p>';
+                }
+                ?>
+
                 <ul>
                     <?php foreach ($existingImages as $image) {
                         echo '
@@ -66,6 +82,12 @@
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
 
+                <?php
+                if (isset($newImageMessage)) {
+                    echo '<p role="alert">' . $newImageMessage . '</p>';
+                }
+                ?>
+
             </div>
 
         </section>
@@ -75,6 +97,13 @@
             <h2 class="about-update__title title">Update About Section</h2>
 
             <div class="sc-padding-b">
+
+                <?php
+                if (isset($updateMessage)) {
+                    echo '<p role="alert">' . $updateMessage . '</p>';
+                }
+                ?>
+
                 <form action="<?= ROOT ?>/admin/about/" method="POST">
 
                     <label for="existing_image">Select an image</label>

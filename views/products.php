@@ -27,7 +27,15 @@
                 }
                 ?>
                 <h2 class="product-hero__title"><?= $product["product_name"] ?></h2>
-                <a href="<?= ROOT ?>/cart/?add-to-cart=<?= $product["product_slug"] ?>" class="product-hero__link btn">Order now for €<?= $product["price"] ?></a>
+
+                <?php
+                if ($product["stock"] >= 1) {
+                ?>
+                    <a href="<?= ROOT ?>/cart/?add-to-cart=<?= $product["product_slug"] ?>" class="product-hero__link btn">Order now for €<?= $product["price"] ?></a>
+                <?php
+                }
+                ?>
+
             </div>
         </section>
 
@@ -85,7 +93,20 @@
             <div class="product-cta__container sc-padding-b">
                 <div class="product-cta__action">
                     <h2 class="title">Order the <span><?= $product["product_name"] ?></span> now.</h2>
-                    <a href="<?= ROOT ?>/cart/?add-to-cart=<?= $product["product_slug"] ?>" class="btn">Order now for €<?= $product["price"] ?></a>
+
+                    <?php
+                    if ($product["stock"] >= 1) {
+                    ?>
+                        <a href="<?= ROOT ?>/cart/?add-to-cart=<?= $product["product_slug"] ?>" class="btn">Order now for €<?= $product["price"] ?></a>
+                    <?php
+                    } else {
+                        echo '
+                        <span class="product-hero__stock product-hero__stock--empty">Out of Stock</span>
+                    ';
+                    }
+                    ?>
+
+
                 </div>
                 <div class="product-cta__description">
                     <h3>It takes just a few seconds:</h3>

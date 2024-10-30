@@ -57,19 +57,19 @@ class Products extends Base
         return $query->fetch();
     }
 
-    public function subtractStock($item)
+    public function subtractStock($quantity, $cartSlug)
     {
         $query = $this->db->prepare("UPDATE 
             products 
         SET 
             stock = stock - ? 
         WHERE 
-            product_id = ?
+            product_slug = ?
         ");
 
         return $query->execute([
-            $item["quantity"],
-            $item["product_id"]
+            $quantity,
+            $cartSlug
         ]);
     }
 
@@ -101,8 +101,6 @@ class Products extends Base
             is_featured
         FROM 
             products
-        ORDER BY 
-            product_name ASC
         ");
 
         $query->execute();
