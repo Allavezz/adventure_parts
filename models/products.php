@@ -57,19 +57,19 @@ class Products extends Base
         return $query->fetch();
     }
 
-    public function subtractStock($quantity, $cartSlug)
+    public function subtractStock($quantity, $productId)
     {
         $query = $this->db->prepare("UPDATE 
             products 
         SET 
-            stock = stock - ? 
+            stock = stock - ?
         WHERE 
-            product_slug = ?
+            product_id= ?
         ");
 
         return $query->execute([
             $quantity,
-            $cartSlug
+            $productId
         ]);
     }
 

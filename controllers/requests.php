@@ -1,20 +1,27 @@
 <?php
+require("models/products.php");
+$model = new Products();
 
-
-
-header("Content-Type: appliction/json");
+header("Content-Type: application/json");
 
 if (isset($_POST["request"])) {
-
     if (
         $_POST["request"] === "removeProduct" &&
         !empty($_POST["product_id"]) &&
-        is_numeric($_POST["product_id"])
+        is_numeric($_POST["product_id"]) &&
+        !empty($_POST["quantity"]) &&
+        is_numeric($_POST["quantity"])
     ) {
-        unset($_SESSION["cart"][intval($_POST["product_id"])]);
+        $productId = intval($_POST["product_id"]);
+        $quantity = intval($_POST["quantity"]);
 
 
-        echo '{"message":"OK"}';
+        $model->sumStock($productId, $quantity);
+
+
+        unset($_SESSION["cart"][$productId]);
+
+        echo json_encode(["message" => "OK"]);
     } elseif (
         $_POST["request"] === "changeQuantity" &&
         !empty($_POST["product_id"]) &&
@@ -23,17 +30,31 @@ if (isset($_POST["request"])) {
         is_numeric($_POST["quantity"]) &&
         intval($_POST["quantity"]) > 0 &&
         !empty($_SESSION["cart"])
-
     ) {
-        require("models/products.php");
-        $model = new Products();
+        $productId = intval($_POST["product_id"]);
+        $newQuantity = intval($_POST["quantity"]);
+
+
         $product = $model->checkStock($_POST);
 
-        if (!empty($product)) {
+        if ($product) {
+            // Get the current quantity in the cart
+            $currentQuantity = $_SESSION["cart"][$product["product_id"]]["quantity"];
+            $difference = $newQuantity - $currentQuantity;
 
-            $_SESSION["cart"][$product["product_id"]]["quantity"] = intval($_POST["quantity"]);
+            // Update stock based on the difference
+            if ($difference > 0) {
+                // If increasing quantity
+                $model->subtractStock($difference, $productId);
+            } elseif ($difference < 0) {
+                // If decreasing quantity
+                $model->sumStock($productId, abs($difference));
+            }
 
-            echo '{"message":"OK"}';
+            // Update the quantity in the cart
+            $_SESSION["cart"][$product["product_id"]]["quantity"] = $newQuantity;
+
+            echo json_encode(["message" => "OK"]);
         }
     }
 }

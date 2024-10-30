@@ -71,13 +71,14 @@
                 button.addEventListener("click", () => {
                     const tr = button.closest("tr"); // Get the row of the current button
                     const product_id = tr.dataset.product_id; // Get the product ID from the data attribute
+                    const quantity = parseInt(tr.querySelector('input[name="changeQuantity"]').value); // Get the quantity from the input
 
                     fetch("<?= ROOT ?>/requests/", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
-                            body: `request=removeProduct&product_id=${product_id}`
+                            body: `request=removeProduct&product_id=${product_id}&quantity=${quantity}` // Include the quantity
                         })
                         .then(response => response.json())
                         .then(result => {
@@ -136,7 +137,7 @@
                                     echo '
                                         <tr class="cart__tr-item" data-product_id="' . $item["product_id"] . '">
                                             <td>' . $item["name"] . '</td>
-                                            <td>€' . $item["price"] . '</td>
+                                            <td>€' . number_format($item["price"], 2) . '</td>
                                             <td>
                                                 <label>
                                                     <input

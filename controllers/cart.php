@@ -1,5 +1,9 @@
 <?php
 
+require("models/products.php");
+
+$model = new Products();
+
 if (isset($_GET["add-to-cart"])) {
 
     $cartSlug = ($_GET["add-to-cart"]);
@@ -8,19 +12,12 @@ if (isset($_GET["add-to-cart"])) {
 
     if (preg_match('/^[a-zA-Z0-9\-]+$/', $cartSlug)) {
 
-        require("models/products.php");
-
-        $model = new Products();
         $product = $model->get($cartSlug);
-
-        $item = [$quantity, $cartSlug];
-
-
-
+        $productId = $product["product_id"];
 
         if (!empty($product) && $product["stock"] > 0) {
 
-            $subtractStock = $model->subtractStock($quantity, $cartSlug);
+            $subtractStock = $model->subtractStock($quantity, $productId);
 
             if (isset($_SESSION["cart"][$product["product_id"]])) {
 
@@ -29,6 +26,7 @@ if (isset($_GET["add-to-cart"])) {
 
                 $_SESSION["cart"][$product["product_id"]] = [
                     "product_id" => $product["product_id"],
+                    "product_slug" => $product["product_slug"],
                     "quantity" => 1,
                     "name" => $product["product_name"],
                     "price" => $product["price"],
@@ -44,6 +42,15 @@ if (isset($_GET["add-to-cart"])) {
 
 
 if (isset($_POST["clear_cart"])) {
+
+    foreach ($_SESSION["cart"] as $item) {
+
+        $productId = $item["product_id"];
+        $quantity = $item["quantity"];
+
+        $model->sumStock($productId, $quantity);
+    }
+
     unset($_SESSION["cart"]);
     header("Location: " . ROOT . "/cart/");
     exit();
