@@ -13,13 +13,11 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <section class="users">
 
             <h2 class="title users__title">Users</h2>
 
             <div class="users__container sc-padding-b">
-
                 <?php if (isset($_SESSION['success_message'])) {
                     echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -34,7 +32,6 @@
                     unset($_SESSION['error_message']);
                 }
                 ?>
-
                 <table>
                     <thead>
                         <th>User ID</th>
@@ -60,11 +57,8 @@
                         ?>
                     </tbody>
                 </table>
-
             </div>
-
         </section>
-
     </main>
 
 </body>

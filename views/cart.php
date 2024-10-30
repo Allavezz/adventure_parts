@@ -131,6 +131,7 @@
                                 <?php
                                 $total = 0;
                                 foreach ($_SESSION["cart"] as $item) {
+
                                     $subtotal = $item["price"] * $item["quantity"];
                                     $total += $subtotal;
 
@@ -165,7 +166,6 @@
                                         <span>
                                             <input type="submit" name="clear_cart" value="Clear Cart" />
                                         </span>
-
                                         <span>
                                             <a href="<?= ROOT ?>/categories/all">Continue Shopping</a>
                                         </span>
@@ -182,9 +182,6 @@
         }
         ?>
     </main>
-    <?php
-
-    ?>
 
     <?php require("templates/footer.php"); ?>
 </body>

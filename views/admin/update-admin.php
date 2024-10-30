@@ -12,16 +12,15 @@
     <?php require("templates/nav.php") ?>
 
     <main class="update-admin admin-layout sc-padding-b">
+
         <h2 class="title">Update Admin</h2>
 
         <div class="update-admin__form-container sc-padding-b">
-
             <?php
             if (isset($message)) {
                 echo '<p role="alert">' . $message . '</p>';
             }
             ?>
-
             <form method="POST" action="<?= ROOT ?>/admin/update-admin/<?= $admin['admin_id'] ?>">
                 <div class="register__field">
                     <label for="name ">Name</label>
@@ -48,9 +47,7 @@
                 </div>
             </form>
         </div>
-
     </main>
-
 </body>
 
 </html>

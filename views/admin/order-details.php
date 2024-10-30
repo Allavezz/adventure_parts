@@ -16,8 +16,8 @@
         <h2 class="order-details__title title">Order Details</h2>
 
         <div class="order-details__container sc-padding-b">
-
             <div>
+
                 <h3>Order Details</h3>
 
                 <dl>
@@ -29,44 +29,44 @@
                     <?php
                     if (isset($orderDetails[0]["payment_date"])) {
                         echo '
-                        <dd>' . $orderDetails[0]["payment_date"] . '</dd>
+                            <dd>' . $orderDetails[0]["payment_date"] . '</dd>
                     ';
                     } else {
                         echo '
-                    <dd>Pending</dd>
-                    ';
+                            <dd>Pending</dd>
+                        ';
                     }
                     ?>
                     <dt>Shipping Date:</dt>
                     <?php
                     if (isset($orderDetails[0]["shipping_date"])) {
                         echo '
-                        <dd>' . $orderDetails[0]["shipping_date"] . '</dd>
-                    ';
+                            <dd>' . $orderDetails[0]["shipping_date"] . '</dd>
+                        ';
                     } else {
                         echo '
-                    <dd>Pending</dd>
-                    ';
+                            <dd>Pending</dd>
+                        ';
                     }
                     ?>
                     <dt>Delivered Date:</dt>
                     <?php
                     if (isset($orderDetails[0]["delivered_date"])) {
                         echo '
-                        <dd>' . $orderDetails[0]["delivered_date"] . '</dd>
-                    ';
+                            <dd>' . $orderDetails[0]["delivered_date"] . '</dd>
+                        ';
                     } else {
                         echo '
-                    <dd>Pending</dd>
-                    ';
+                            <dd>Pending</dd>
+                        ';
                     }
                     ?>
                     <dt>Payment Reference:</dt>
                     <dd><?= $orderDetails[0]["payment_reference"] ?></dd>
                 </dl>
             </div>
-
             <div>
+
                 <h3>Costumer Details</h3>
 
                 <dl>
@@ -88,7 +88,6 @@
                     <dd><?= $orderDetails[0]["phone"] ?></dd>
                 </dl>
             </div>
-
             <div>
 
                 <h3>Products Details</h3>
@@ -119,11 +118,8 @@
                 </table>
 
                 <p>Total Price: € <?= number_format($totalOrderPrice, 2) ?></p>
+
             </div>
-
-
-
-
     </main>
 
 </body>

@@ -13,13 +13,11 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <section class="countries">
 
             <h2 class="title countries__title">Countries</h2>
 
             <div class="countries__container sc-padding-b">
-
                 <?php if (isset($_SESSION['success_message'])) {
                     echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -62,11 +60,8 @@
                         ?>
                     </tbody>
                 </table>
-
             </div>
-
         </section>
-
     </main>
 
 </body>

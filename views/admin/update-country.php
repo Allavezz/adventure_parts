@@ -12,6 +12,7 @@
     <?php require("templates/nav.php") ?>
 
     <main class="update-country admin-layout sc-padding-b">
+
         <h2 class="title">Update Country</h2>
 
         <?php
@@ -19,9 +20,7 @@
             echo '<p role="alert">' . $message . '</p>';
         }
         ?>
-
         <div class="update-country__form-container sc-padding-b">
-
             <form method="POST" action="<?= ROOT ?>/admin/update-country/<?= $country["code"] ?>">
                 <div class="register__field">
                     <label for="update_code">Code</label>
@@ -36,9 +35,7 @@
                     <button class="btn btn-blue" type="submit" name="update">Update</button>
                 </div>
             </form>
-
         </div>
-
     </main>
 
 </body>

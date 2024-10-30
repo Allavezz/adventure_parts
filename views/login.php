@@ -12,17 +12,16 @@
     <?php require("templates/header.php"); ?>
 
     <section class="login  sc-padding-b">
-
         <?php
         if (isset($message)) {
             echo '<p role="alert">' . $message . '</p>';
         }
         ?>
-
         <div class="login__container">
-            <h1 class="title">Login</h1>
-            <div class="login__form">
 
+            <h1 class="title">Login</h1>
+
+            <div class="login__form">
                 <form method="POST" action="<?= ROOT ?>/login/">
                     <div class="login__field">
                         <label for="email">Email</label>
@@ -36,7 +35,6 @@
                         <button class="btn" type="submit" name="send">Login</button>
                     </div>
                 </form>
-
                 <div class="login__signup">
                     <span>Don't have account?</span>
                     <a href="<?= ROOT ?>/register/">Sign Up</a>

@@ -22,13 +22,16 @@ if (isset($_POST["send"])) {
             !empty($user) &&
             password_verify($_POST["password"], $user["password"])
         ) {
+
             $_SESSION["user_id"] = $user["user_id"];
             header("Location: " . ROOT . "/");
             exit();
         } else {
+
             $message = "Incorrect Email or Password";
         }
     } else {
+
         $message = "Fill all the fields correctly";
     }
 }

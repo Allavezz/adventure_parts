@@ -1,0 +1,29 @@
+@use '../../abstracts' as *;
+
+.contact-query {
+	margin-bottom: 4rem;
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&__container {
+		background-color: var(--bg-w);
+	}
+
+	dl {
+		dt {
+			color: var(--title1);
+			font-size: 1.5rem;
+			font-family: 'Oswald', sans-serif;
+		}
+
+		dd {
+			margin-bottom: 1.25rem;
+
+			&:last-child {
+				margin-bottom: 3rem;
+			}
+		}
+	}
+}

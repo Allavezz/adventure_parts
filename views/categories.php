@@ -13,17 +13,15 @@
     <?php require("templates/header.php"); ?>
 
     <main>
-
-        <!-- Category Navigation -->
         <section class="category sc-padding">
             <div class="category__container">
+
                 <h2 class="title">Choose your bike</h2>
+
                 <div class="category__nav">
                     <?php
-
                     foreach ($categories as $categories) {
 
-                        // Add active class if the category slug matches the current one
                         $btnActive = ($category["category_slug"] === $categories["category_slug"]) ? 'btn-active' : '';
 
                         echo '
@@ -35,11 +33,11 @@
                 </div>
             </div>
         </section>
-
-        <!-- Producs Section -->
         <section class="products sc-padding-b">
             <div class="products__container">
+
                 <h2 class="title"><?= $category["category_name"] ?></h2>
+
                 <div class="products__gallery">
                     <?php
                     foreach ($categoryProducts as $product) {

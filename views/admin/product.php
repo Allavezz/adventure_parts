@@ -13,7 +13,6 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <?php if (isset($_SESSION['success_message'])) {
             echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -21,7 +20,6 @@
             unset($_SESSION['success_message']);
         }
         ?>
-
         <section class="admin-product-hero">
 
             <h2 class="admin-product-hero__title title">Hero Section</h2>
@@ -44,7 +42,6 @@
                         <p href="<?= ROOT ?>/cart/?add-to-cart=<?= $product["product_slug"] ?>" class="product-hero__link btn">Order now for €<?= $product["price"] ?></p>
                     </div>
                 </div>
-
                 <?php
                 if (!empty($productHero)) {
                     echo '
@@ -66,26 +63,19 @@
                         </form>
                     ';
                 }
-
                 ?>
-
                 <?php
                 if (isset($bannerImageMessage)) {
                     echo '<p role="alert">' . $bannerImageMessage . '</p>';
                 }
                 ?>
             </div>
-
-
-
         </section>
-
         <section class="admin-product-description">
 
             <h2 class="admin-product-description__title title">Descriptions</h2>
 
             <div class="admin-product-description__container sc-padding-b">
-
                 <div class="product-description__container">
                     <h2 class="product-description__title title">
                         <span><?= $product["product_name"] ?></span>
@@ -95,6 +85,7 @@
                     <div class="product-description__content">
                         <?php
                         foreach ($productDescriptions as $index => $description) {
+
                             $descriptionId = $description['product_descriptions_id'];
                             $descriptionContents = $contents[$descriptionId] ?? [];
 
@@ -133,7 +124,6 @@
                         <?php
                         }
                         ?>
-
                         <?php if (isset($_SESSION['delete_description_message'])) {
                             echo '
                                 <div id="flash-message">' . $_SESSION['delete_description_message'] . '</div>
@@ -152,6 +142,7 @@
                             <input type="text" name="new_title" id="create_description-title" minlength="3" maxlength="255" required>
 
                             <label for="create-description-image">Image</label>
+                            <span>Requirements: <br> Unique Name <br> 510x383 <br> Max size 2MB <br> JPEG only</span>
                             <input type="file" name="new_image" id="create-description-image" required>
 
                             <label for="create-description-alt">Image Alt</label>
@@ -165,7 +156,6 @@
                                 <h4>Add Content</h4>
 
                                 <div class="description-content-item">
-
                                     <label for="create-content-type">Content Type</label>
                                     <select name="new_content_type[]" id="create-content-type" required>
                                         <option value="paragraph">Paragraph</option>
@@ -177,30 +167,23 @@
 
                                     <label for="create-content-order">Sort Order</label>
                                     <input id="create-content-order" type="number" name="new_content_sort[]" min="1" max="99" required>
-
                                 </div>
-
                             </div>
 
                             <button class="btn- btn-blue btn--small" type="button" onclick="addNewContentItem()">Add more Content</button>
 
                             <button class="btn btn-blue" type="submit" name="create_description">Create Description</button>
 
-                            <?php
-                            if (isset($descriptionMessage)) {
-                                echo '<p role="alert">' . $descriptionMessage . '</p>';
-                            }
-                            ?>
-
                         </form>
-
+                        <?php
+                        if (isset($decriptionImageMessage)) {
+                            echo '<p role="alert">' . $decriptionImageMessage . '</p>';
+                        }
+                        ?>
                     </div>
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
     <script>

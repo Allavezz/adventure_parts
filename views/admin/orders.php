@@ -13,7 +13,6 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <?php if (isset($_SESSION['success_message'])) {
             echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -21,19 +20,16 @@
             unset($_SESSION['success_message']);
         }
         ?>
-
         <?php
         if (isset($deleteMessage)) {
             echo '<p role="alert">' . $deleteMessage . '</p>';
         }
         ?>
-
         <section class="orders">
 
             <h2 class="orders__title title">Recent Orders</h2>
 
             <div class="orders__container sc-padding-b">
-
                 <?php if (isset($_SESSION['paid_error_message'])) {
                     echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -41,7 +37,6 @@
                     unset($_SESSION['paid_error_message']);
                 }
                 ?>
-
                 <table>
                     <thead>
                         <tr>
@@ -79,23 +74,19 @@
                     </tbody>
                 </table>
             </div>
-
         </section>
-
         <section class="paid-orders">
 
             <h2 class="paid-orders__title title">Paid Orders</h2>
 
             <div class="paid-orders__container sc-padding-b">
-
                 <?php if (isset($_SESSION['shipped_error_message'])) {
                     echo '
-                    <div id="flash-message">' . $_SESSION['success_message'] . '</div>
+                    <div id="flash-message">' . $_SESSION['error_message'] . '</div>
                 ';
                     unset($_SESSION['shipped_error_message']);
                 }
                 ?>
-
                 <table>
                     <thead>
                         <tr>
@@ -132,13 +123,11 @@
                 </table>
             </div>
         </section>
-
         <section class="shipped-orders">
 
             <h2 class="shipped-orders__title title">Shipped Orders</h2>
 
             <div class="shipped-orders__container sc-padding-b">
-
                 <?php if (isset($_SESSION['close_message'])) {
                     echo '
                     <div id="flash-message">' . $_SESSION['close_message'] . '</div>
@@ -146,7 +135,6 @@
                     unset($_SESSION['close_message']);
                 }
                 ?>
-
                 <?php if (isset($_SESSION['delivered_error_message'])) {
                     echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -154,7 +142,6 @@
                     unset($_SESSION['shipped_error_message']);
                 }
                 ?>
-
                 <table>
                     <thead>
                         <tr>
@@ -180,7 +167,6 @@
                                     <td>' . $order["payment_date"] . '</td>
                                     <td>' . $order["shipping_date"] . '</td>
                                 ';
-
                             if ($order["delivered_date"] !== NULL) {
                                 echo '
                                     <td>' . $order["delivered_date"] . '</td>
@@ -190,12 +176,10 @@
                                     <td>Pending</td>
                                 ';
                             }
-
                             echo '
                                     <td>
                                         <a class="btn btn-blue btn--small" href="' . ROOT . '/admin/order-details/' . $order["order_id"] . '">See Details</a>
                                 ';
-
                             if ($order["delivered_date"] !== NULL) {
                                 echo '
                                     <a class="btn btn--small" href="' . ROOT . '/admin/delete-order/' . $order["order_id"] . '">Close Order</a>
@@ -206,18 +190,15 @@
                                     <a class="btn btn--small" href="' . ROOT . '/admin/close-order/' . $order["order_id"] . '">Delete Order</a>
                                 ';
                             }
-
                             echo '
-                                        
                                     </td>
                                 </tr>
                             ';
                         }
                         ?>
                     </tbody>
-
+                </table>
         </section>
-
     </main>
 
 </body>

@@ -9,7 +9,6 @@
                     <li><a href="<?= ROOT ?>/contact/">Contact</a></li>
                 </ul>
             </div>
-
             <div class="footer__item">
                 <h3>Follow Us</h3>
                 <ul>
@@ -18,7 +17,6 @@
                     <li><a href="#">Youtube</a></li>
                 </ul>
             </div>
-
             <div class="footer__item">
                 <h3>Support</h3>
                 <ul>

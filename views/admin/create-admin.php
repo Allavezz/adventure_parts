@@ -12,6 +12,7 @@
     <?php require("templates/nav.php") ?>
 
     <main class="create-admin admin-layout sc-padding-b">
+
         <h2 class="title">Add a new admin</h2>
 
         <?php
@@ -19,7 +20,6 @@
             echo '<p role="alert">' . $message . '</p>';
         }
         ?>
-
         <div class="create-admin__form-container sc-padding-b">
             <form method="POST" action="<?= ROOT ?>/admin/create-admin">
                 <div class="register__field">
@@ -46,11 +46,8 @@
                     <button class="btn btn-blue btn--small" type="submit" name="create">Create</button>
                 </div>
             </form>
-
         </div>
-
     </main>
-
 </body>
 
 </html>

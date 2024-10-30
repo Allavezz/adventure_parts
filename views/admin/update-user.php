@@ -21,7 +21,6 @@
                 echo '<p role="alert">' . $message . '</p>';
             }
             ?>
-
             <form method="POST" action="<?= ROOT ?>/admin/update-user/<?= $user["user_id"] ?>">
                 <div class="register__field">
                     <label for="name ">Name</label>
@@ -72,9 +71,7 @@
                     <button class="btn btn-blue" type="submit" name="update">Update</button>
                 </div>
             </form>
-
         </div>
-
     </main>
 
 </body>

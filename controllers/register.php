@@ -10,10 +10,9 @@ foreach ($countries as $country) {
     $country_codes[] = $country["code"];
 }
 
-// Register Form Validation
+
 if (isset($_POST["send"])) {
 
-    // Sanitization for all the fields
     foreach ($_POST as $key => $value) {
         $_POST[$key] = htmlspecialchars(strip_tags(trim($value)));
     }
@@ -49,6 +48,7 @@ if (isset($_POST["send"])) {
         $user = $model->getByEmail($_POST["email"]);
 
         if (empty($user)) {
+
             $createUser = $model->create($_POST);
 
             $_SESSION["user_id"] = $createUser["user_id"];
@@ -58,9 +58,11 @@ if (isset($_POST["send"])) {
             header("Location: " . ROOT . "/");
             exit();
         } else {
+
             $message = "This email is already in use";
         }
     } else {
+
         $message = "Fill all the fields correctly";
     }
 }

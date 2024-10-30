@@ -13,7 +13,6 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <?php if (isset($_SESSION['success_message'])) {
             echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -21,7 +20,6 @@
             unset($_SESSION['success_message']);
         }
         ?>
-
         <section class="about-layout">
 
             <h2 class="about-layout__title title">About Section</h2>
@@ -41,21 +39,17 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
         <section class="about-images">
 
             <h2 class="about-images__title title">Images Stored</h2>
 
             <div class="sc-padding-b">
-
                 <?php
                 if (isset($deleteImageMessage)) {
                     echo '<p role="alert">' . $deleteImageMessage . '</p>';
                 }
                 ?>
-
                 <ul>
                     <?php foreach ($existingImages as $image) {
                         echo '
@@ -72,38 +66,30 @@
                     ';
                     }
                     ?>
-
                 </ul>
-
                 <form class="about-images__add-form" action="<?= ROOT ?>/admin/about/" method="POST" enctype="multipart/form-data">
                     <label for="about_new_image">Upload an Image</label>
                     <span>Requirements: <br> Unique Name <br> 1140x600 <br> Max size 2MB <br> JPEG only</span>
                     <input type="file" name="new_image" id="about_new_image">
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
-
                 <?php
                 if (isset($newImageMessage)) {
                     echo '<p role="alert">' . $newImageMessage . '</p>';
                 }
                 ?>
-
             </div>
-
         </section>
-
         <section class="about-update">
 
             <h2 class="about-update__title title">Update About Section</h2>
 
             <div class="sc-padding-b">
-
                 <?php
                 if (isset($updateMessage)) {
                     echo '<p role="alert">' . $updateMessage . '</p>';
                 }
                 ?>
-
                 <form action="<?= ROOT ?>/admin/about/" method="POST">
 
                     <label for="existing_image">Select an image</label>
@@ -133,9 +119,7 @@
                 </form>
             </div>
         </section>
-
     </main>
-
 </body>
 
 </html>

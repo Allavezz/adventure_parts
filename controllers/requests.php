@@ -5,6 +5,7 @@ $model = new Products();
 header("Content-Type: application/json");
 
 if (isset($_POST["request"])) {
+
     if (
         $_POST["request"] === "removeProduct" &&
         !empty($_POST["product_id"]) &&
@@ -12,12 +13,11 @@ if (isset($_POST["request"])) {
         !empty($_POST["quantity"]) &&
         is_numeric($_POST["quantity"])
     ) {
+
         $productId = intval($_POST["product_id"]);
         $quantity = intval($_POST["quantity"]);
 
-
         $model->sumStock($productId, $quantity);
-
 
         unset($_SESSION["cart"][$productId]);
 
@@ -31,9 +31,9 @@ if (isset($_POST["request"])) {
         intval($_POST["quantity"]) > 0 &&
         !empty($_SESSION["cart"])
     ) {
+
         $productId = intval($_POST["product_id"]);
         $newQuantity = intval($_POST["quantity"]);
-
 
         $product = $model->checkStock($_POST);
 

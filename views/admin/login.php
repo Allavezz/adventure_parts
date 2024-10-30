@@ -19,43 +19,40 @@
 </head>
 
 <body>
+    <main>
+        <section class="login  sc-padding-b">
+            <?php if (isset($_GET['message'])): ?>
+                <div class="message success">
+                    <?php echo htmlspecialchars(strip_tags(urldecode($_GET['message']))); ?>
+                </div>
+            <?php endif; ?>
+            <?php
+            if (isset($message)) {
+                echo '<p role="alert">' . $message . '</p>';
+            }
+            ?>
+            <div class="login__container">
 
-    <section class="login  sc-padding-b">
+                <h1 class="title">Admin Login</h1>
 
-        <?php if (isset($_GET['message'])): ?>
-            <div class="message success">
-                <?php echo htmlspecialchars(strip_tags(urldecode($_GET['message']))); ?>
+                <div class="login__form">
+                    <form method="POST" action="<?= ROOT ?>/admin/login/">
+                        <div class="login__field">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="login__field">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" minlength="8" maxlength="1000" required>
+                        </div>
+                        <div class="login__submit">
+                            <button class="btn" type="submit" name="send">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        <?php endif; ?>
-
-        <?php
-        if (isset($message)) {
-            echo '<p role="alert">' . $message . '</p>';
-        }
-        ?>
-
-        <div class="login__container">
-            <h1 class="title">Admin Login</h1>
-            <div class="login__form">
-
-                <form method="POST" action="<?= ROOT ?>/admin/login/">
-                    <div class="login__field">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="login__field">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" minlength="8" maxlength="1000" required>
-                    </div>
-                    <div class="login__submit">
-                        <button class="btn" type="submit" name="send">Login</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </section>
-
+        </section>
+    </main>
 </body>
 
 </html>

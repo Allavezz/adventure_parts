@@ -17,11 +17,11 @@
             echo '<p role="alert">' . $message . '</p>';
         }
         ?>
-
         <div class="register__container">
-            <h1 class="title">Register</h1>
-            <div class="register__form">
 
+            <h1 class="title">Register</h1>
+
+            <div class="register__form">
                 <form method="POST" action="<?= ROOT ?>/register/">
                     <div class="register__field">
                         <label for="name ">Name</label>
@@ -72,13 +72,11 @@
                         <button class="btn" type="submit" name="send">Register</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </section>
 
     <?php require("templates/footer.php"); ?>
-
 </body>
 
 </html>

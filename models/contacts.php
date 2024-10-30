@@ -34,4 +34,55 @@ class Contacts extends Base
 
         return $data;
     }
+
+    public function getAll()
+    {
+        $query = $this->db->prepare("SELECT 
+            contact_id, 
+            topic, 
+            email, 
+            created_at
+        FROM 
+            contacts
+        ");
+
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function get($id)
+    {
+        $query = $this->db->prepare("SELECT 
+            contact_id,
+            topic, 
+            description, 
+            category, 
+            year, 
+            order_id, 
+            email, 
+            country, 
+            created_at
+        FROM
+            contacts 
+        WHERE 
+            contact_id = ?
+        ");
+
+        $query->execute([$id]);
+
+        return $query->fetch();
+    }
+
+    public function delete($id)
+    {
+        $query = $this->db->prepare("DELETE 
+        FROM 
+            contacts
+        WHERE 
+            contact_id = ?
+        ");
+
+        return $query->execute([$id]);
+    }
 }

@@ -25,7 +25,6 @@ require("models/products-descriptions.php");
 $modelProductDescriptions = new ProductDescriptions;
 $productDescriptions = $modelProductDescriptions->getByProductId($id);
 
-
 require("models/descriptions-content.php");
 $modelDescriptionContent = new DescriptionsContent;
 $contents = [];

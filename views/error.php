@@ -8,14 +8,13 @@
 </head>
 
 <body>
-
     <div class="error-container">
+
         <h1>Error <?= $statusCode ?></h1>
         <p><?= $errorMessage ?></p>
 
         <a href="<?= $homeUrl ?>" class="btn">Go back Home</a>
     </div>
-
 </body>
 
 </html>

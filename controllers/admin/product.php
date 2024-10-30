@@ -123,50 +123,67 @@ foreach ($productDescriptions as $description) {
 
 
 if (isset($_POST["create_description"])) {
-    // Falta criar validação dos campos, criar if() para cada passo e respectivos elses com os errors. Não é grave visto ser na área administrativa e termos validação client-sided. Fica para o final se tiver tempo
-
+    // Falta criar validação dos campos, criar if() e respectivos elses com os errors. Não é grave visto ser na área administrativa e termos validação client-sided. Fica para o final se tiver tempo
     $image = $_FILES["new_image"];
     $imageName = basename($image["name"]);
 
+    if ($image["error"] !== UPLOAD_ERR_OK) {
 
-    $uploadImage = $modelProductDescriptions->uploadImage($image);
+        $decriptionImageMessage = "An error ocurred during the file upload.";
+    } elseif (!in_array(mime_content_type($image["tmp_name"]), ["image/jpeg", "image/jpg"])) {
 
-    $createDescription = $modelProductDescriptions->create($_POST, $imageName, $id);
+        $decriptionImageMessage = "Invalid file type. Only JPEG images are allowed.";
+    } elseif ($image["size"] > 2 * 1024 * 1024) {
 
-    if ($createDescription) {
-        $descriptionId = $createDescription["product_descriptions_id"];
+        $decriptionImageMessage = "File is too large. Maximum size allowed is 2MB.";
+    } else {
 
-        $contentTypes = [];
-        $contents = [];
-        $sortOrders = [];
+        list($width, $height) = getimagesize($image["tmp_name"]);
 
-        // Collect content data into arrays
-        foreach ($_POST["new_content_type"] as $index => $contentType) {
-            $contentTypes[] = $contentType;
-            $contents[] = $_POST["new_content"][$index];
-            $sortOrders[] = $_POST["new_content_sort"][$index];
-        }
-
-        // Prepare and insert content items
-        foreach ($contentTypes as $index => $type) {
-            $data = [
-                "product_descriptions_id" => $descriptionId,
-                "content_type" => $type,
-                "content" => $contents[$index],
-                "sort_order" => $sortOrders[$index]
-            ];
-
-            $createDescriptionContent =
-                $modelDescriptionContent->create($data);
-        }
-
-        if ($createDescriptionContent) {
-
-            $_SESSION["success_message"] = "Product description created successfully";
-            header("Location: " . ROOT . "/admin/product/" . $id);
-            exit();
+        if ($width !== 510 || $height !== 383) {
+            $decriptionImageMessage = "Invalid image dimensions. Image must be exactly 510x383 pixels.";
         } else {
-            $descriptionMessage = "There was an error creating the product description. Please try again later";
+
+            $uploadImage = $modelProductDescriptions->uploadImage($image);
+
+            $createDescription = $modelProductDescriptions->create($_POST, $imageName, $id);
+
+            if ($createDescription) {
+                $descriptionId = $createDescription["product_descriptions_id"];
+
+                $contentTypes = [];
+                $contents = [];
+                $sortOrders = [];
+
+                // Collect content data into arrays
+                foreach ($_POST["new_content_type"] as $index => $contentType) {
+                    $contentTypes[] = $contentType;
+                    $contents[] = $_POST["new_content"][$index];
+                    $sortOrders[] = $_POST["new_content_sort"][$index];
+                }
+
+                // Prepare and insert content items
+                foreach ($contentTypes as $index => $type) {
+                    $data = [
+                        "product_descriptions_id" => $descriptionId,
+                        "content_type" => $type,
+                        "content" => $contents[$index],
+                        "sort_order" => $sortOrders[$index]
+                    ];
+
+                    $createDescriptionContent =
+                        $modelDescriptionContent->create($data);
+                }
+
+                if ($createDescriptionContent) {
+
+                    $_SESSION["success_message"] = "Product description created successfully";
+                    header("Location: " . ROOT . "/admin/product/" . $id);
+                    exit();
+                } else {
+                    $descriptionMessage = "There was an error creating the product description. Please try again later";
+                }
+            }
         }
     }
 }

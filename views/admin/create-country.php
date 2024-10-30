@@ -12,6 +12,7 @@
     <?php require("templates/nav.php"); ?>
 
     <main class="create-country sc-padding-b admin-layout">
+
         <h2 class="title">Add a new country</h2>
 
         <?php
@@ -19,9 +20,7 @@
             echo '<p role="alert">' . $message . '</p>';
         }
         ?>
-
         <div class="create-country__form-container sc-padding-b">
-
             <form method="POST" action="<?= ROOT ?>/admin/create-country">
                 <div class="register__field">
                     <label for="create_code">Country Code</label>
@@ -36,13 +35,8 @@
                     <button class="btn btn-blue btn--small" type="submit" name="create">Create</button>
                 </div>
             </form>
-
         </div>
-
     </main>
-
-
-
 </body>
 
 </html>

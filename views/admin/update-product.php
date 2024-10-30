@@ -16,13 +16,11 @@
         <h2 class="title">Update Product</h2>
 
         <div class="update-product__form-container sc-padding-b">
-
             <?php
             if (isset($message)) {
                 echo '<p role="alert">' . $message . '</p>';
             }
             ?>
-
             <form method="POST" action="<?= ROOT ?>/admin/update-product/<?= $product["product_slug"] ?>">
                 <label for="update_product_name">Product Name</label>
                 <input type="text" name="product_name" id="update_product_name" minlength="3" maxlength="255" required placeholder="<?= $product["product_name"] ?>">
@@ -51,9 +49,7 @@
 
                 <button class="btn btn-blue" type="submit" name="update">Update Product</button>
             </form>
-
         </div>
-
     </main>
 
 </body>

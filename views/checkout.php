@@ -25,11 +25,6 @@
             <dt>Total</dt>
             <dd><?= $total ?>€</dd>
         </dl>
-
-
-
-
-
     </main>
 
     <?php require("templates/footer.php"); ?>

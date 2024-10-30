@@ -14,9 +14,7 @@
     <?php require("templates/header.php"); ?>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
-
             <div class="hero__slides">
                 <?php
                 $isFirstSlide = true;
@@ -37,10 +35,7 @@
                 ?>
             </div>
         </section>
-
-        <!-- Categories Gallery Section -->
         <section class="categories sc-padding">
-
             <?php if (isset($_SESSION['success_message'])) {
                 echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -48,7 +43,6 @@
                 unset($_SESSION['success_message']);
             }
             ?>
-
             <div class="categories__container">
                 <?php
                 foreach ($categories as $category) {
@@ -70,13 +64,13 @@
                 ?>
             </div>
         </section>
-
-        <!-- About Us -->
         <section class="about sc-padding-b">
             <div class="about__container">
+
                 <div class="about__image">
                     <img src="../images/about/<?= $about["about_image"] ?>" alt="<?= $about["image_alt"] ?>">
                 </div>
+
                 <div class="about__content">
                     <h2 class="title"><?= $about["about_title"] ?></h2>
                     <?php
@@ -87,7 +81,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <?php require("templates/footer.php"); ?>

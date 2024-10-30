@@ -7,6 +7,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 if (empty($_SESSION["cart"])) {
+
     header("Location: " . ROOT . "/");
     exit;
 }
@@ -25,7 +26,6 @@ $total = 0;
 foreach ($_SESSION["cart"] as $item) {
 
     $modelOrders->createDetail($order_id, $item);
-    /* $modelProducts->subtractStock($item); */
 
     $total += $item["quantity"] * $item["price"];
 }

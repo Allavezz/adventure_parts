@@ -26,6 +26,7 @@
                     ';
                 }
                 ?>
+
                 <h2 class="product-hero__title"><?= $product["product_name"] ?></h2>
 
                 <?php
@@ -35,20 +36,22 @@
                 <?php
                 }
                 ?>
-
             </div>
         </section>
 
         <section class="product-description sc-padding-b">
             <div class="product-description__container">
+
                 <h2 class="product-description__title title">
                     <span><?= $product["product_name"] ?></span>
                     <br>
                     <strong>features and benefits</strong>
                 </h2>
+
                 <div class="product-description__content">
                     <?php
                     foreach ($productDescriptions as $index => $description) {
+
                         $descriptionId = $description['product_descriptions_id'];
                         $descriptionContents = $contents[$descriptionId] ?? [];
 
@@ -57,7 +60,9 @@
                     ?>
                         <div class="<?= $flexDirection ?>">
                             <div class="product-description__text">
+
                                 <h3><?= $description["title"] ?></h3>
+
                                 <?php
                                 foreach ($descriptionContents as $content) {
                                     if ($content["content_type"] === 'paragraph') {
@@ -78,9 +83,11 @@
                                 }
                                 ?>
                             </div>
+
                             <div class="product-description__image">
                                 <img src="/images/products/description/<?= $description["image_url"] ?>" alt="<?= $description["image_alt"] ?>" />
                             </div>
+
                         </div>
                     <?php
                     }
@@ -92,6 +99,7 @@
         <section class="product-cta sc-padding-b">
             <div class="product-cta__container sc-padding-b">
                 <div class="product-cta__action">
+
                     <h2 class="title">Order the <span><?= $product["product_name"] ?></span> now.</h2>
 
                     <?php
@@ -105,17 +113,18 @@
                     ';
                     }
                     ?>
-
-
                 </div>
                 <div class="product-cta__description">
+
                     <h3>It takes just a few seconds:</h3>
+
                     <ol>
                         <li>Click on the order button</li>
                         <li>Fill in your delivery address and production year of your bike</li>
                         <li>Choose credit card or PayPal payment</li>
                         <li>The package will be shipped usually within three working days all around the world with tracking number</li>
                     </ol>
+
                 </div>
             </div>
             <div class="sc-padding product-cta__icons">
@@ -134,8 +143,6 @@
             </div>
         </section>
     </main>
-
-
 
     <?php require("templates/footer.php"); ?>
 </body>

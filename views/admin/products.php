@@ -13,7 +13,6 @@
     <?php require("templates/nav.php") ?>
 
     <main class="sc-padding-b admin-layout">
-
         <?php if (isset($_SESSION['success_message'])) {
             echo '
                     <div id="flash-message">' . $_SESSION['success_message'] . '</div>
@@ -28,7 +27,6 @@
             unset($_SESSION['delete_product_error_message']);
         }
         ?>
-
         <section class="products-layout">
 
             <h2 class="products-layout__title title">Products</h2>
@@ -56,9 +54,7 @@
                     ?>
                 </div>
             </div>
-
         </section>
-
         <section class="products-images">
 
             <h2 class="products-images__title title">Images Stored</h2>
@@ -81,36 +77,29 @@
                     }
                     ?>
                 </ul>
-
                 <form class="products-images__add-form" action="<?= ROOT ?>/admin/products/" method="POST" enctype="multipart/form-data">
                     <label for="products_new_image">Upload an Image</label>
                     <span>Requirements: <br> Unique Name <br> 600x440 <br> Max size 2MB <br> JPEG only</span>
                     <input type="file" name="new_image" id="products_new_image">
                     <button class="btn btn-blue" type="submit" name="add">Upload</button>
                 </form>
-
                 <?php
                 if (isset($newImageMessage)) {
                     echo '<p role="alert">' . $newImageMessage . '</p>';
                 }
                 ?>
-
             </div>
-
         </section>
-
         <section class="add-product">
 
             <h2 class="add-product__title title">Add a product</h2>
 
             <div class="sc-padding-b">
-
                 <?php
                 if (isset($addProductMessage)) {
                     echo '<p role="alert">' . $addProductMessage . '</p>';
                 }
                 ?>
-
                 <form action="<?= ROOT ?>/admin/products/" method="POST">
                     <label for="add_product_name">Product Name</label>
                     <input type="text" name="product_name" id="add_product_name" minlength="3" maxlength="255" required>
@@ -138,21 +127,17 @@
                     <button class="btn btn-blue" type="submit" name="create">Add Product</button>
                 </form>
             </div>
-
         </section>
-
         <section class="manage-product">
 
             <h2 class="manage-product__title title">Manage Products</h2>
 
             <div class="manage-product__container sc-padding-b">
-
                 <?php
                 if (isset($featuredtMessage)) {
                     echo '<p role="alert">' . $featuredMessage . '</p>';
                 }
                 ?>
-
                 <table>
                     <thead>
                         <tr>
@@ -190,9 +175,7 @@
                     </tbody>
                 </table>
             </div>
-
         </section>
-
         <section class="product-categories">
 
             <h2 class="product-categories__title title">Add Products to Categories</h2>
@@ -230,9 +213,7 @@
                     <button type="submit" name="update_categories" class="btn btn-blue">Update</button>
                 </form>
             </div>
-
         </section>
-
     </main>
 
 </body>

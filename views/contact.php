@@ -17,17 +17,15 @@
                 <h2>Something went wrong? We are all ears!</h2>
             </div>
         </section>
-
         <section class="support-form sc-padding-b">
             <div class="support-form__container">
-
                 <?php
                 if (isset($message)) {
                     echo '<p role="alert">' . $message . '</p>';
                 }
                 ?>
-
                 <div class="support-form__wrapper">
+
                     <h3>Adventure/Parts Support</h3>
                     <h4>We send out deliveries next working day after the order is paid.</h4>
                     <span class="support-form__heading-span">Please apply your query through the form below or drop us an email at <a href="mailto:ap@adventureparts.com">ap@adventureparts.com</a></span>

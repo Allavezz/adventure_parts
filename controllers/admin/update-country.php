@@ -41,9 +41,11 @@ if (isset($_POST["update"])) {
             header("Location: " . ROOT . "/admin/countries/");
             exit();
         } else {
+
             $message = "There was an error updating the country. Please try again";
         }
     } else {
+
         $message = "Fill all the fields correctly";
     }
 }
