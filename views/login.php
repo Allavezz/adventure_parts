@@ -23,6 +23,7 @@
 
             <div class="login__form">
                 <form method="POST" action="<?= ROOT ?>/login/">
+                    <?php echo csrf_token_field(); ?>
                     <div class="login__field">
                         <label for="email">Email</label>
                         <input type="email" name="email" required>

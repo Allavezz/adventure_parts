@@ -31,6 +31,7 @@
                     <span class="support-form__heading-span">Please apply your query through the form below or drop us an email at <a href="mailto:ap@adventureparts.com">ap@adventureparts.com</a></span>
 
                     <form class="support-form__form" action="<?= ROOT ?>/contact/" method="POST">
+                        <?php echo csrf_token_field(); ?>
                         <div>
                             <label for="support_topic">Topic <span>*</span></label>
                             <select name="topic" id="support_topic" required>

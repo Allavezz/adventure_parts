@@ -6,7 +6,7 @@ This is my frontend project for the Full Stack Web development course that I'm t
 
 - [Usage](#usage) -[Download required tools](#download-required-tools) -[Configuration](#configuration) -[Install Depencencies](#install-dependencies)
 - [Overview](#overview)
-  - [Context] (#context)
+  - [Context](#context)
   - [The challenge](#the-challenge)
   - [The solution](#the-solution) -[Screenshots](#screenshots)
 - [Process](#process) -[Built with](#built-with) -[Technics and Tools](#technics-and-tools)
@@ -119,4 +119,4 @@ Improvements:
 
 Future:
 
-- tbd
+- Keep learning more and more about PHP.

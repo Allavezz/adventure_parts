@@ -2,6 +2,11 @@
 
 if (isset($_POST["send"])) {
 
+    $csrf_token = $_POST['csrf_token'] ?? '';
+    if (!validate_csrf_token($csrf_token)) {
+        die("CSRF validation failed");
+    }
+
     foreach ($_POST as $key => $value) {
         $_POST[$key] = htmlspecialchars(strip_tags(trim($value)));
     }

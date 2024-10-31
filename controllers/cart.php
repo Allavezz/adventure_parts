@@ -43,6 +43,11 @@ if (isset($_GET["add-to-cart"])) {
 
 if (isset($_POST["clear_cart"])) {
 
+    $csrf_token = $_POST['csrf_token'] ?? '';
+    if (!validate_csrf_token($csrf_token)) {
+        die("CSRF validation failed");
+    }
+
     foreach ($_SESSION["cart"] as $item) {
 
         $productId = $item["product_id"];

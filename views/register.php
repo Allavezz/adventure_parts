@@ -23,6 +23,7 @@
 
             <div class="register__form">
                 <form method="POST" action="<?= ROOT ?>/register/">
+                    <?php echo csrf_token_field(); ?>
                     <div class="register__field">
                         <label for="name ">Name</label>
                         <input type="text" name="name" minlength="3" maxlength="60" required>

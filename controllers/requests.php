@@ -5,6 +5,11 @@ $model = new Products();
 header("Content-Type: application/json");
 
 if (isset($_POST["request"])) {
+    $csrf_token = $_POST['csrf_token'] ?? '';
+    if (!validate_csrf_token($csrf_token)) {
+        echo json_encode(["message" => "CSRF token validation failed."]);
+        exit();
+    }
 
     if (
         $_POST["request"] === "removeProduct" &&

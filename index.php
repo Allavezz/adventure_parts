@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/helpers/csrf_helper.php';
+
 define("ENV", parse_ini_file(".env"));
 define("ROOT", "");
 

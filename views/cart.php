@@ -14,6 +14,8 @@
             const changeInputs = document.querySelectorAll('input[name="changeQuantity"]');
             const totalDisplay = document.querySelector("tr.cart__tr-buttons td:last-child"); // Total price cell
 
+            const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+
             // Function to recalculate and update the cart total
             function updateCartTotal() {
                 let total = 0;
@@ -51,7 +53,7 @@
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
-                            body: `request=changeQuantity&quantity=${quantity}&product_id=${product_id}`
+                            body: `request=changeQuantity&quantity=${quantity}&product_id=${product_id}&csrf_token=${csrfToken}`
                         })
                         .then(response => response.json())
                         .then(result => {
@@ -78,7 +80,7 @@
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
-                            body: `request=removeProduct&product_id=${product_id}&quantity=${quantity}` // Include the quantity
+                            body: `request=removeProduct&product_id=${product_id}&quantity=${quantity}&csrf_token=${csrfToken}` // Include the quantity
                         })
                         .then(response => response.json())
                         .then(result => {
@@ -117,6 +119,7 @@
             <section class="sc-padding-b cart">
                 <div class="cart__container">
                     <form action="<?= ROOT ?>/cart/" method="POST">
+                        <?php echo csrf_token_field(); ?>
                         <table>
                             <thead class="cart__thead">
                                 <tr class="cart__tr-head">
