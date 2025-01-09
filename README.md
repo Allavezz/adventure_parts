@@ -33,7 +33,7 @@ DB_HOST = "localhost"
 DB_NAME = "backend_project"
 DB_USER = "root"
 DB_PASSWORD = ""
-(might be different to mac users).
+(might be different to windows users).
 
 Run MAMP/XAMP/etc.
 Turn ON Apache, MySQL and PHP.
@@ -45,6 +45,10 @@ Go to localhost/phpMyAdmin5 and import the database provided in the project fold
 
 atm the only dependency of this project is Sass.
 You can use it my running: sass --watch scss:css on your terminal
+
+Backoffice--
+admin@admin.com
+12345678
 
 ## Overview
 
