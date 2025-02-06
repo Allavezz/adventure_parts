@@ -1,6 +1,6 @@
 # Backend Project - Adventure Parts
 
-This is my frontend project for the Full Stack Web development course that I'm taking at [FLAG](https://https://flag.pt/curso/full-stack-web-developer).
+This is my backend project for the Full Stack Web development course that I'm taking at [FLAG](https://https://flag.pt/curso/full-stack-web-developer).
 
 ## Table of contents
 
